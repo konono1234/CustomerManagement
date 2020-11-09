@@ -7,7 +7,11 @@ spring:
   thymeleaf:
     enabled: true
     cache: false
-
+    
+  datasource:    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cust_sys_db
+    username: postgres 
+    password: postgres
 # INTERNATIONALIZATION (MessageSourceAutoConfiguration)
   messages:
     basename: messages

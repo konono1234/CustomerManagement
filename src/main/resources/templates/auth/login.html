@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="auth/_temp :: header ('ERROR')">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>顧客情報一覧</title>
 </head>
 <body>
 
+  <div >
+    <div >
+      <h1 th:utext="#{login.login.title}">login.login.title</h1>
+    </div>
+
+    <div >
+      <div >
+
+        <form  role="form" th:action="@{/login}" method="post">
+        
+          <!-- username -->
+          <div >
+            <label for="username" >username</label>
+            <div >
+              <input id="username"  type="text" name="username" value="admin" />
+            </div>
+          </div>
+          
+          <!-- password -->
+          <div >
+            <label for="password" >password</label>
+            <div>
+              <input id="password"  type="password" name="password" value="admin" />
+            </div>
+          </div>
+
+          <div>
+            <input  type="submit" >送信する
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div th:replace="auth/_temp :: footer"></div>
+  </div>
+
+  <div th:include="auth/_temp :: script"></div>
 </body>
+
 </html>
