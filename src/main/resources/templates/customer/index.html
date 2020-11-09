@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>顧客情報一覧</title>
 </head>
 <body>
+	<table border="1">
+		<tr>
+			<th>顧客番号</th>
+			<th>氏</th>
+			<th>名</th>
+			<th>氏(フリガナ)</th>
+			<th>名(フリガナ)</th>
+			<th>性別コード</th>
+			<th>メールアドレス</th>
+			<th>電話番号</th>
+			<th>生年月日</th>
+			<th>住所</th>
+			<th>郵便番号</th>
+			<th>登録日</th>
+		</tr>
+		
+		<tr th:each="index : ${list}">
+			<td th:text="${index.cust_no}"></td>
+			<td th:text="${index.last_nm}"></td>
+			<td th:text="${index.first_nm}"></td>
+			<td th:text="${index.last_nm_kana}"></td>
+			<td th:text="${index.first_nm_kana}"></td>
+			<td th:text="${index.gender_cd}"></td>
+			<td th:text="${index.mail_address}"></td>
+			<td th:text="${index.tel_no}"></td>
+			<td th:text="${index.birth_date}"></td>
+			<td th:text="${index.home_address}"></td>
+			<td th:text="${index.post_number}"></td>
+			<td th:text="${index.reg_date}"></td>
+		</tr>
+	</table>
 
 </body>
 </html>
