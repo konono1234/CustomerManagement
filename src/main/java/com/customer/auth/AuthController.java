@@ -20,7 +20,7 @@ public class AuthController {
 
 	/**
 	 * ログイン画面を表示する
-	 * 
+	 *「/login」を拾ってauthフォルダのlogin.htmlに飛ばす
 	 * @return String
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -30,7 +30,7 @@ public class AuthController {
 
 	/**
 	 * ログインエラーが面を表示する
-	 * 
+	 * 「/login-error」を拾ってauthフォルダのlogin.htmlに飛ばす
 	 * @param model
 	 * @return String
 	 */

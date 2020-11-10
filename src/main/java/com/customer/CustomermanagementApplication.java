@@ -11,10 +11,14 @@ import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication
 public class CustomermanagementApplication {
-
+	
+	//Springbootを起動するメソッド
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CustomermanagementApplication.class, args);
 	}
+	
+	//DBとの接続設定
 	
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
