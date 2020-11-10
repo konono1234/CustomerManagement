@@ -2,7 +2,7 @@ package com.customer.bean;
 
 public class CustomerBean {
 	
-private Integer cust_no;
+	private Integer cust_no;
 	
 	private String last_nm;
 	

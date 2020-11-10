@@ -1,14 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="auth/_temp :: header ('ERROR')">
+<head>
 <meta charset="UTF-8">
-<title>顧客情報一覧</title>
+<title>ログイン画面</title>
 </head>
 <body>
 
   <div >
     <div >
       <h1 th:utext="#{login.login.title}">login.login.title</h1>
+      <p>テスト用id = admin password = 1234</p>
     </div>
 
     <div >
@@ -40,10 +41,10 @@
       </div>
     </div>
 
-    <div th:replace="auth/_temp :: footer"></div>
+    <div></div>
   </div>
 
-  <div th:include="auth/_temp :: script"></div>
+  <div></div>
 </body>
 
 </html>

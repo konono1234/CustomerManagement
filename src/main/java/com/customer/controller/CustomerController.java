@@ -19,8 +19,12 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerService customerService;
-	
-	@RequestMapping(value = "customer/index")
+	/*
+	 * 「/customer」を拾ってlistにデータを格納してcustomerフォルダのindex.htmlに飛ばす
+	 * 2020/11/10　格納の際にエラー発生中
+	 * 
+	 */
+	@RequestMapping(value = "/customer")
 	public String init(Model model) {
 		
 		List<CustomerBean> list = customerService.selectIndex();

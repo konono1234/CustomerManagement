@@ -23,7 +23,8 @@ public class CustomerService {
 	CustomerMapper customerMapper;
 	
 	public List<CustomerBean> selectIndex(){
-		return customerMapper.selectIndexAll();
+		List<CustomerBean> customerList = customerMapper.selectIndexAll();
+		return customerList;
 	}
 
 }
