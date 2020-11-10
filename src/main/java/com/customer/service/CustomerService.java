@@ -16,7 +16,7 @@ import com.customer.mapper.CustomerMapper;
  */
 
 @Service
-@Transactional
+
 public class CustomerService {
 	
 	@Autowired
