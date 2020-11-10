@@ -1,10 +1,9 @@
 package com.customer.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +30,7 @@ public class CustomerController {
 	public ModelAndView init(ModelAndView modelAndView) {
 		
 		
-		List<CustomerBean> list = customerService.selectIndex();
+		ArrayList<CustomerBean> list = customerService.selectIndex();
 		modelAndView.addObject("list",list);
 		modelAndView.setViewName("customer/index");
 		return modelAndView;
