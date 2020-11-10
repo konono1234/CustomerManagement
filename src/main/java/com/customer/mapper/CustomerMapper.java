@@ -1,6 +1,6 @@
 package com.customer.mapper;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -16,6 +16,6 @@ import com.customer.bean.CustomerBean;
 public interface CustomerMapper {
 	
 	@Select("SELECT * FROM m_customer")
-	public List<CustomerBean> selectIndexAll();
+	public ArrayList<CustomerBean> selectIndexAll();
 
 }

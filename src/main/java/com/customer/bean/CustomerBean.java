@@ -2,7 +2,7 @@ package com.customer.bean;
 
 public class CustomerBean {
 	
-	private Integer cust_no;
+	private int cust_no;
 	
 	private String last_nm;
 	
@@ -26,11 +26,11 @@ public class CustomerBean {
 	
 	private String reg_date;
 
-	public Integer getCust_no() {
+	public int getCust_no() {
 		return cust_no;
 	}
 
-	public void setCust_no(Integer cust_no) {
+	public void setCust_no(int cust_no) {
 		this.cust_no = cust_no;
 	}
 

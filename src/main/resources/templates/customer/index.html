@@ -21,7 +21,7 @@
 			<th>登録日</th>
 		</tr>
 		<tr th:each="index : ${list}" th:object="${index}">
-			<td th:text="${cust_nm}">1</td>
+			<td th:text="${cust_no}">1</td>
 			<td th:text="${last_nm}">1</td>
 			<td th:text="${first_nm}">1</td>
 			<td th:text="${last_nm_kana}">1</td>
@@ -36,6 +36,8 @@
 		</tr>
 		
 	</table>
-
+		<ul th:each="index : ${list}">
+			<li th:text="${cust_no}"></li>
+		</ul>
 </body>
 </html>
