@@ -18,14 +18,14 @@ import com.customer.service.CustomerService;
 public class CustomerController {
 	
 	@Autowired
-	private CustomerService customerService;
+	CustomerService customerService;
 	
-	@RequestMapping(value = "index")
+	@RequestMapping(value = "customer/index")
 	public String init(Model model) {
 		
 		List<CustomerBean> list = customerService.selectIndex();
 		model.addAttribute("list", list);
 		
-		return "index";
+		return "customer/index";
 	}
 }

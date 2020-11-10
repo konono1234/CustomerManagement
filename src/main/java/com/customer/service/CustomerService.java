@@ -1,8 +1,11 @@
 package com.customer.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.customer.bean.CustomerBean;
 import com.customer.mapper.CustomerMapper;
 
@@ -13,10 +16,11 @@ import com.customer.mapper.CustomerMapper;
  */
 
 @Service
+@Transactional
 public class CustomerService {
 	
 	@Autowired
-	private CustomerMapper customerMapper;
+	CustomerMapper customerMapper;
 	
 	public List<CustomerBean> selectIndex(){
 		return customerMapper.selectIndexAll();
