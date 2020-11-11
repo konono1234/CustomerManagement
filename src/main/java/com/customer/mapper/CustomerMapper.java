@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import com.customer.bean.CustomerBean;
+import com.customer.bean.UserBean;
 
 /*
  * CustomerMapper.xmlに記述してあるSQL文を実行するMapperクラスです
@@ -16,7 +17,7 @@ public interface CustomerMapper {
   @Select("SELECT * FROM m_customer")
   public List<CustomerBean> selectIndexAll();
 
-  @Select("SERECT * FROM m_user")
-  public List<CustomerBean> selectUserAll();
+  @Select("SERECT password FROM m_user where user_id = 'user_id'")
+  public List<UserBean> selectUserPassword(String user_id);
 
 }
