@@ -26,10 +26,12 @@ public class AdminCustomerController {
 	public String index(Model model) {
 		List<CustomerBean> list = customerService.selectIndex();
 		
-		if(CollectionUtils.isEmpty(list)) {
+		/*
+		 * if(CollectionUtils.isEmpty(list)) {
 			String message = msg.getMessage("customer.list.empty", null, Locale.JAPANESE); 
 			model.addAttribute("emptyMessage", message);
 		}
+		*/
 		model.addAttribute("list", list);
 		
 		return "admin/customer/index";
