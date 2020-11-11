@@ -1,6 +1,6 @@
 package com.customer.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,8 @@ public class CustomerService {
 	@Autowired
 	CustomerMapper customerMapper;
 	
-	public ArrayList<CustomerBean> selectIndex(){
-		ArrayList<CustomerBean> customerList = customerMapper.selectIndexAll();
+	public List<CustomerBean> selectIndex(){
+		List<CustomerBean> customerList = customerMapper.selectIndexAll();
 		return customerList;
 	}
 
