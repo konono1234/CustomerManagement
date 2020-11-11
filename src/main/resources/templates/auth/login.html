@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン画面</title>
 </head>
 <body>
 
+  <div >
+    <div >
+      <h1 th:utext="#{login.login.title}">login.login.title</h1>
+      <p>テスト用id = admin password = 1234</p>
+    </div>
+
+    <div >
+      <div >
+
+        <form  role="form" th:action="@{/login}" method="post">
+
+          <!-- username -->
+          <div >
+            <label for="username" >username</label>
+            <div >
+              <input id="username"  type="text" name="username" value="admin" />
+            </div>
+          </div>
+
+          <!-- password -->
+          <div >
+            <label for="password" >password</label>
+            <div>
+              <input id="password"  type="password" name="password" value="1234" />
+            </div>
+          </div>
+
+          <div>
+            <input  type="submit" >送信する
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+
+  <div></div>
 </body>
+
 </html>

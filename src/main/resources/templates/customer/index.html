@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>顧客情報一覧</title>
 </head>
 <body>
+	<table border="1">
+		<tr>
+			<th>顧客番号</th>
+			<th>氏</th>
+			<th>名</th>
+			<th>氏(フリガナ)</th>
+			<th>名(フリガナ)</th>
+			<th>性別コード</th>
+			<th>メールアドレス</th>
+			<th>電話番号</th>
+			<th>生年月日</th>
+			<th>住所</th>
+			<th>郵便番号</th>
+			<th>登録日</th>
+		</tr>
+		<tr th:each="index : ${list}" th:object="${index}">
+			<td th:text="${index.cust_no}">1</td>
+			<td th:text="${index.last_nm}">1</td>
+			<td th:text="${index.first_nm}">1</td>
+			<td th:text="${index.last_nm_kana}">1</td>
+			<td th:text="${index.first_nm_kana}">1</td>
+			<td th:text="${index.gender_cd}">1</td>
+			<td th:text="${index.mail_address}">1</td>
+			<td th:text="${index.tel_no}">1</td>
+			<td th:text="${index.birth_date}">1</td>
+			<td th:text="${index.home_address}">1</td>
+			<td th:text="${index.post_number}">1</td>
+			<td th:text="${index.reg_date}">1</td>
+
+
+	</table>
 
 </body>
 </html>
