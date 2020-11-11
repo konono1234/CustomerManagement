@@ -27,7 +27,6 @@ public class CustomerController {
   @RequestMapping(value = "/customer")
   public String init(Model model) {
 
-
     List<CustomerBean> list = customerService.selectIndex();
     model.addAttribute("list", list);
 
