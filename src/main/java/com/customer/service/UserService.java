@@ -15,6 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.customer.auth.LoginUserDao;
 import com.customer.bean.LoginUser;
 
+
+/*
+ * SpringFrameWorkのログイン機能を実装しつつLoginUserDaoクラスを起動します
+ */
 @Service
 @Transactional
 public class UserService implements UserDetailsService {

@@ -21,7 +21,8 @@ public class AuthController {
   final static Logger logger = LoggerFactory.getLogger(AuthController.class);
 
   /**
-   * ログイン画面を表示する 「/login」を拾ってauthフォルダのlogin.htmlに飛ばす
+   * ログイン画面を表示する 「/login」を拾ってauthフォルダのlogin.htmlに飛ばす。 入力されたuseridでデータベースに検索をしつつidとpasswordが一緒かどうか調べる
+   * WebSecurityConfigクラスで詳細を定義
    * 
    * @return String
    */

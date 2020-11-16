@@ -1,5 +1,9 @@
 package com.customer.bean;
 
+/*
+ * ユーザー情報のBeanクラスです。Repository,entityともいう
+ */
+
 public class LoginUser {
 
   private String user_id;

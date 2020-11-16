@@ -1,5 +1,9 @@
 package com.customer.bean;
 
+/*
+ * 顧客情報のBeanクラスです。Repository,entityともいう
+ */
+
 public class CustomerBean {
 
   private int cust_no;

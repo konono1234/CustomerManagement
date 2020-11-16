@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.customer.service.UserService;
 
 /*
- * ログイン機能を設定するクラスです あとで追加する機能：admin権限付与、パスワードをテーブルから拾ってくる
+ * ログイン機能を設定するクラスです あとで追加する機能：admin権限付与
  */
 @Configuration
 @EnableWebSecurity
@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .invalidateHttpSession(true).permitAll();// ログアウト時のセッション破棄を有効化
   }
 
+  // idとpasswordをサービスを介して習得し設定する
   @Autowired
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userService).passwordEncoder(passwordEncoder());

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import com.customer.bean.LoginUser;
 import com.customer.mapper.LoginMapper;
 
+/*
+ * マッパーを起動し取得したデータをLoginUserインスタンスに格納する
+ */
 @Repository
 public class LoginUserDao {
 

@@ -5,8 +5,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /*
- * パスを受け取りhtmlに飛ばす
- * 
+ * パスを受け取りhtmlに飛ばす いらないかも？
  */
 @Configuration
 public class LoginConfig implements WebMvcConfigurer {

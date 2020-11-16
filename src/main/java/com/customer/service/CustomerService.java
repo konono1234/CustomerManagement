@@ -7,8 +7,7 @@ import com.customer.bean.CustomerBean;
 import com.customer.mapper.CustomerMapper;
 
 /*
- * Mapperクラスを起動するサービスクラスです。
- * 
+ * Mapperクラスを起動するサービスクラスです。 取り出したデータをCustomerBeanクラスに格納します
  * 
  */
 
