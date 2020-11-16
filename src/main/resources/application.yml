@@ -15,7 +15,7 @@ spring:
 # INTERNATIONALIZATION (MessageSourceAutoConfiguration)
   messages:
     basename: messages
-    cache-seconds: -1
+    cache-duration: -1
     encoding: UTF-8
 
 # ENDPOINTS (AbstractEndpoint subclasses)

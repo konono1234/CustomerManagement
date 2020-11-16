@@ -37,9 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .usernameParameter("username") // リクエストパラメータのname属性を明示
         .passwordParameter("password") // リクエストパラメータのpassword属性を明示※下で設定可
         .defaultSuccessUrl("/customer") // ログイン成功時のurl
-        .failureUrl("/login-error").permitAll().and() // ログイン失敗時のurl
+        .failureUrl("/login?error").permitAll().and() // ログイン失敗時のurl。パラメータでerrorを付加するｔｈ：ifでhtml上で拾うため
         .logout().logoutUrl("/logout") // ログアウト用のurl
-        .logoutSuccessUrl("/login") // ログアウト成功時のurl
+        .logoutSuccessUrl("/login?logout") // ログアウト成功時のurl。パラメータでlogoutを付加する
         .deleteCookies("JSESSIONID") // ログアウト時に削除するクッキー名
         .invalidateHttpSession(true).permitAll();// ログアウト時のセッション破棄を有効化
   }
