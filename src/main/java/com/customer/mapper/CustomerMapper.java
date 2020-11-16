@@ -17,7 +17,7 @@ public interface CustomerMapper {
   @Select("SELECT * FROM m_customer")
   public List<CustomerBean> selectIndexAll();
 
-  @Select("SERECT password FROM m_user where user_id = 'user_id'")
-  public List<UserBean> selectUserPassword(String user_id);
+  @Select("SERECT user_ id, password FROM m_user where user_id = #{username}")
+  public UserBean selectByUser(String username);
 
 }

@@ -1,12 +1,14 @@
 package com.customer.bean;
 
-public class UserBean {
+public class LoginUser {
 
   private String user_id;
 
+
   private String password;
 
-  public String getUsername() {
+
+  public String getUser_id() {
     return user_id;
   }
 
@@ -18,9 +20,11 @@ public class UserBean {
     return password;
   }
 
+
   public void setPassword(String password) {
     this.password = password;
   }
+
 
 
 }

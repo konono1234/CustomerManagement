@@ -1,17 +1,31 @@
 package com.customer.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.customer.service.UserService;
 
 /*
  * ログイン機能を設定するクラスです あとで追加する機能：admin権限付与、パスワードをテーブルから拾ってくる
  */
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+  private UserService userService;
+
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder() {
+    BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+
+    return bcpe;
+  }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -30,15 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .invalidateHttpSession(true).permitAll();// ログアウト時のセッション破棄を有効化
   }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-    PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-    auth.inMemoryAuthentication()
-
-        // ユーザ名'admin', パスワード'1234',ロール'ADMIN'のユーザを追加
-        .withUser("admin").password(passwordEncoder.encode("1234")).roles("ADMIN");
+  @Autowired
+  public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
   }
 

@@ -6,10 +6,18 @@
 </head>
 <body>
 
-  <div >
+  <div th:if="${param.logout}">
+	  <p th:text="#{logout.done}"/>
+  </div>
+  
+  <div th:if="${param.error}">
+  	<p th:text="#{login.failure}"/>
+  </div>
+  <div>
     <div >
       <h1 th:utext="#{login.login.title}">login.login.title</h1>
-      <p>テスト用id = admin password = 1234</p>
+      <p>m_userテーブル id= 「kono」 password = 1234</p>
+      <p>id = 「konono」　password = 1111</p>
     </div>
 
     <div >
@@ -19,9 +27,9 @@
         
           <!-- username -->
           <div >
-            <label for="username" >username</label>
+            <label for="username" th:utext="#{login.username}">username</label>
             <div >
-              <input id="username"  type="text" name="username" value="admin" />
+              <input id="username"  type="text" name="username" value="" required/>
             </div>
           </div>
           
@@ -29,7 +37,7 @@
           <div >
             <label for="password" >password</label>
             <div>
-              <input id="password"  type="password" name="password" value="1234" />
+              <input id="password"  type="password" name="password" value="" />
             </div>
           </div>
 

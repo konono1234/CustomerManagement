@@ -1,15 +1,13 @@
 package com.customer.auth;
 
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.customer.bean.UserBean;
-import com.customer.service.CustomerService;
 
 /**
  * 認証画面を制御するコントローラクラスです
@@ -27,22 +25,15 @@ public class AuthController {
    * 
    * @return String
    */
-  @RequestMapping(value = "/login", method = RequestMethod.GET)
-  public String login() {
+  @RequestMapping(value = "/login")
+  public String login(Model model) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String userName = auth.getName();
+    model.addAttribute("userName", userName);
     return "auth/login";
   }
 
-  @Autowired
-  CustomerService customerService;
 
-  @RequestMapping(value = "/auth/login")
-  public String initUser(Model model) {
-
-    List<UserBean> password = customerService.selectUserInfo();
-    model.addAttribute("password", password);
-
-    return "auth/login";
-  }
 
   /**
    * ログインエラーが面を表示する 「/login-error」を拾ってauthフォルダのlogin.htmlに飛ばす
