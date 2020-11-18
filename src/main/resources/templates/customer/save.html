@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:text="#{customer.save.title}">Save title here</title>
 </head>
 <body>
 
+	<div>
+		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
+	</div>
+	
+	<div>
+		<h1 th:text="#{customer.save.title}">customer.save.title</h1>
+	</div>
+	
+	<div class="row">
+      <div class="col-md-12">
+        <table class="table" th:object="${customerForm}">
+          <tr>
+            <th th:utext="#{cust_no}">cust_no</th>
+            <td th:text="${customerForm.cust_no}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{last_nm}">last_nm</th>
+            <td th:text="${customerForm.last_nm}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{first_nm}">first_nm</th>
+            <td th:text="${customerForm.first_nm}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{last_nm_kana}">last_nm_kana</th>
+            <td th:text="${customerForm.last_nm_kana}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{first_nm_kana}">first_nm_kana</th>
+            <td th:text="${customerForm.first_nm_kana}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{gender_cd}">gender_cd</th>
+            <td>
+            <span th:if="${index.gender_cd eq 1}" ><div>男</div></span>
+				<span th:if="${index.gender_cd eq 2}" ><div>女</div></span>
+				<span th:if="${index.gender_cd eq 3}" ><div>未定義</div></span>
+            </td>
+          </tr>
+          <tr>
+            <th th:utext="#{mail_address}">mail_address</th>
+            <td th:text="${customerForm.mail_address}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{tel_no}">tel_no</th>
+            <td th:text="${customerForm.tel_no}"></td>
+          </tr>
+           <tr>
+            <th th:utext="#{birth_date}">birth_date</th>
+            <td th:text="${customerForm.birth_date}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{home_address}">home_address</th>
+            <td th:text="${customerForm.home_address}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{post_number}">post_number</th>
+            <td th:text="${customerForm.post_number}"></td>
+          </tr>
+          <tr>
+            <th th:utext="#{reg_date}">reg_date</th>
+            <td th:text="${customerForm.reg_date}"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+		
+
 </body>
-</html>

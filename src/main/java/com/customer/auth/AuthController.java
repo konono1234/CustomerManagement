@@ -2,6 +2,11 @@ package com.customer.auth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+<<<<<<< HEAD
+=======
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> create
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 認証画面を制御するコントローラクラスです
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> create
  * @author Comsize
  *
  */
@@ -19,6 +28,7 @@ public class AuthController {
   final static Logger logger = LoggerFactory.getLogger(AuthController.class);
 
   /**
+<<<<<<< HEAD
    * ログイン画面を表示する 「/login」を拾ってauthフォルダのlogin.htmlに飛ばす
    * 
    * @return String
@@ -28,6 +38,31 @@ public class AuthController {
     return "auth/login";
   }
 
+=======
+   * ログイン画面を表示する 「/login」を拾ってauthフォルダのlogin.htmlに飛ばす。 入力されたuseridでデータベースに検索をしつつidとpasswordが一緒かどうか調べる
+   * WebSecurityConfigクラスで詳細を定義
+   * 
+   * @return String
+   */
+  @RequestMapping(value = "/login")
+  public String login(Model model) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String userName = auth.getName();
+    // System.out.println(userName);
+
+    if (userName.equals("anonymousUser")) {
+      userName = "true";
+      model.addAttribute("userName", userName);
+      return "auth/login";
+    } else {
+      model.addAttribute("userName", userName);
+      return "auth/login";
+    }
+  }
+
+
+
+>>>>>>> create
   /**
    * ログインエラーが面を表示する 「/login-error」を拾ってauthフォルダのlogin.htmlに飛ばす
    * 
@@ -40,5 +75,8 @@ public class AuthController {
     return "auth/login";
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> create
 }

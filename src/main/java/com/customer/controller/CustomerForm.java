@@ -1,16 +1,19 @@
-package com.customer.bean;
+package com.customer.controller;
 
-/*
- * 顧客情報のBeanクラスです。Repository,entityともいう
- */
+import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class CustomerBean {
 
-<<<<<<< HEAD
+// フォームで入力されたデータを一時的に格納するクラス
+// 必要ならシリアルIDを後に定義する
+@SuppressWarnings("serial")
+public class CustomerForm implements Serializable {
 
-=======
->>>>>>> create
-  private int cust_no;
+  private Integer cust_no;
 
   private String last_nm;
 
@@ -28,17 +31,25 @@ public class CustomerBean {
 
   private String birth_date;
 
+  private Date sql_birth_date;
+
   private String home_address;
 
   private String post_number;
 
-  private String reg_date;
+  // 登録日の日付をStringとDate型で取得します。String->フォーム用。Date->DB用
 
-  public int getCust_no() {
+  Calendar calender = Calendar.getInstance();
+  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+  private String reg_date = sdf.format(calender.getTime());
+
+  private Date sql_reg_date = this.sql_reg_date = Date.valueOf(reg_date);;
+
+  public Integer getCust_no() {
     return cust_no;
   }
 
-  public void setCust_no(int cust_no) {
+  public void setCust_no(Integer cust_no) {
     this.cust_no = cust_no;
   }
 
@@ -78,6 +89,7 @@ public class CustomerBean {
     return gender_cd;
   }
 
+
   public void setGender_cd(byte gender_cd) {
     this.gender_cd = gender_cd;
   }
@@ -102,8 +114,13 @@ public class CustomerBean {
     return birth_date;
   }
 
+  public Date getSql_birth_date() {
+    return sql_birth_date;
+  }
+
   public void setBirth_date(String birth_date) {
     this.birth_date = birth_date;
+    this.sql_birth_date = Date.valueOf(birth_date);
   }
 
   public String getHome_address() {
@@ -126,7 +143,19 @@ public class CustomerBean {
     return reg_date;
   }
 
+  public Date getSql_reg_date() {
+    return sql_reg_date;
+  }
+
   public void setReg_date(String reg_date) {
     this.reg_date = reg_date;
+    this.sql_reg_date = Date.valueOf(reg_date);
   }
+
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
+  }
+
+
 }

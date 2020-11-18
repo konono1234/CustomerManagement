@@ -6,15 +6,32 @@
 </head>
 <body>
 
+<<<<<<< HEAD
   <div >
     <div >
       <h1 th:utext="#{login.login.title}">login.login.title</h1>
       <p>テスト用id = admin password = 1234</p>
+=======
+  <div th:if="${param.logout}">
+	  <p th:text="#{logout.done}"/>
+  </div>
+  
+  <div th:if="${param.error}">
+  	<p th:text="#{login.failure}"/>
+  </div>
+ 
+  <div>
+    <div >
+      <h1 th:text="#{login.login.title}">login.login.title</h1>
+      <p>m_userテーブル id= 「kono」 password = 1234</p>
+      <p>id = 「konono」　password = 1111</p>
+>>>>>>> create
     </div>
 
     <div >
       <div >
 
+<<<<<<< HEAD
         <form  role="form" th:action="@{/login}" method="post">
 
           <!-- username -->
@@ -30,11 +47,32 @@
             <label for="password" >password</label>
             <div>
               <input id="password"  type="password" name="password" value="1234" />
+=======
+        <form  role="form" th:action="@{/login}"  method="post">
+        
+          <!-- username -->
+          <div >
+            <label for="username" th:utext="#{login.username}"></label>
+            <div >
+              <input id="username"  type="text" name="username" value="" required/>
+            </div>
+          </div>
+          
+          <!-- password -->
+          <div >
+            <label for="password" th:text="#{login.password}"></label>
+            <div>
+              <input id="password"  type="password" name="password" value="" required/>
+>>>>>>> create
             </div>
           </div>
 
           <div>
+<<<<<<< HEAD
             <input  type="submit" >送信する
+=======
+            <input  type="submit" th:value="#{login.submit}"></input>
+>>>>>>> create
           </div>
         </form>
 

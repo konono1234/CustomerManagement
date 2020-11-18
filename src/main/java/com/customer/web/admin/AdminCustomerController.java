@@ -3,14 +3,22 @@ package com.customer.web.admin;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+<<<<<<< HEAD
 import org.springframework.stereotype.Controller;
+=======
+>>>>>>> create
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.customer.bean.CustomerBean;
 import com.customer.service.CustomerService;
 
+<<<<<<< HEAD
 @Controller
+=======
+// 現状機能していない
+
+>>>>>>> create
 public class AdminCustomerController {
   // final static Logger logger = LoggerFactory.getLogger(AdminCustomerController.class);
 
