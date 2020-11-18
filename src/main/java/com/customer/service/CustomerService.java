@@ -19,13 +19,21 @@ public class CustomerService {
   @Autowired
   CustomerMapper customerMapper;
 
+  // index
   public List<CustomerBean> selectIndex() {
     List<CustomerBean> customerList = customerMapper.selectIndexAll();
     return customerList;
   }
 
+  // create
   public void insertNewCustomer(CustomerForm customerForm) {
     customerMapper.create(customerForm);
+  }
+
+  // detail
+  public List<CustomerBean> findByNumber(Integer cust_no) {
+    List<CustomerBean> customerList = customerMapper.selectByNumber(cust_no);
+    return customerList;
   }
 
 

@@ -5,7 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import com.customer.bean.CustomerBean;
 import com.customer.service.CustomerService;
 
@@ -49,7 +52,7 @@ public class CustomerController {
   }
 
   /*
-   * create.htmlでデータが格納されたインスタンスを表示用に渡します
+   * create.htmlでデータが格納されたインスタンスをDBにinsertします
    */
   @RequestMapping(value = "/customer/save")
   public String saveForm(CustomerForm customerForm) {
@@ -57,17 +60,26 @@ public class CustomerController {
     return "customer/save";
   }
 
-  /*
-   * save.htmlで間違いが無いか確認したデータが入ったインスタンスをDBにinsertして
-   */
-  @RequestMapping(value = "customer/save-create")
-  public String saveCreate(CustomerForm customerForm, Model model) {
+  @RequestMapping(value = "/customer/{cust_no}", method = RequestMethod.GET)
+  public ModelAndView detail(@PathVariable Integer cust_no) {
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("customer/detail");
 
+    List<CustomerBean> list = customerService.findByNumber(cust_no);
+    mv.addObject("list", list);
 
-    List<CustomerBean> list = customerService.selectIndex();
-    model.addAttribute("list", list);
-    return "customer/index";
+    return mv;
   }
 
+  /*
+   * 没コード save.htmlで間違いが無いか確認したデータが入ったインスタンスをDBにinsertして
+   * 
+   * @RequestMapping(value = "customer/save-create") public String saveCreate(CustomerForm
+   * customerForm, Model model) {
+   * 
+   * 
+   * List<CustomerBean> list = customerService.selectIndex(); model.addAttribute("list", list);
+   * return "customer/index"; }
+   */
 
 }
