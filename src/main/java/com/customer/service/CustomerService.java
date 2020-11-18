@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.customer.bean.CustomerBean;
+import com.customer.controller.CustomerForm;
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -21,6 +22,10 @@ public class CustomerService {
   public List<CustomerBean> selectIndex() {
     List<CustomerBean> customerList = customerMapper.selectIndexAll();
     return customerList;
+  }
+
+  public void insertNewCustomer(CustomerForm customerForm) {
+    customerMapper.create(customerForm);
   }
 
 

@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
     System.out.println("LOGINUSER INSTANCE");
 
     if (user == null) {
-      throw new UsernameNotFoundException("userID" + userName + "は見つかりません");
+      throw new UsernameNotFoundException("userID:" + userName + "は見つかりません");
     }
 
     List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();

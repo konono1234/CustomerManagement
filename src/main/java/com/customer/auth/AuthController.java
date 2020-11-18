@@ -30,8 +30,16 @@ public class AuthController {
   public String login(Model model) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String userName = auth.getName();
-    model.addAttribute("userName", userName);
-    return "auth/login";
+    // System.out.println(userName);
+
+    if (userName.equals("anonymousUser")) {
+      userName = "true";
+      model.addAttribute("userName", userName);
+      return "auth/login";
+    } else {
+      model.addAttribute("userName", userName);
+      return "auth/login";
+    }
   }
 
 

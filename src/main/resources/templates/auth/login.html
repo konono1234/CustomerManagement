@@ -13,6 +13,7 @@
   <div th:if="${param.error}">
   	<p th:text="#{login.failure}"/>
   </div>
+ 
   <div>
     <div >
       <h1 th:text="#{login.login.title}">login.login.title</h1>
@@ -23,7 +24,7 @@
     <div >
       <div >
 
-        <form  role="form" th:action="@{/login}" method="post">
+        <form  role="form" th:action="@{/login}"  method="post">
         
           <!-- username -->
           <div >
@@ -35,14 +36,14 @@
           
           <!-- password -->
           <div >
-            <label for="password" >password</label>
+            <label for="password" th:text="#{login.password}"></label>
             <div>
-              <input id="password"  type="password" name="password" value="" />
+              <input id="password"  type="password" name="password" value="" required/>
             </div>
           </div>
 
           <div>
-            <input  type="submit" >送信する
+            <input  type="submit" th:value="#{login.submit}"></input>
           </div>
         </form>
 

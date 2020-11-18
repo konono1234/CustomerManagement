@@ -2,23 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title>顧客情報一覧</title>
+<title th:text="customer.index.title">customer.index.title</title>
 </head>
 <body>
+	<div>
+		<li role="presentation"><a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
+	</div>
+
 	<table border="1">
 		<tr>
-			<th>顧客番号</th>
-			<th>氏</th>
-			<th>名</th>
-			<th>氏(フリガナ)</th>
-			<th>名(フリガナ)</th>
-			<th>性別コード</th>
-			<th>メールアドレス</th>
-			<th>電話番号</th>
-			<th>生年月日</th>
-			<th>住所</th>
-			<th>郵便番号</th>
-			<th>登録日</th>
+			<th　th:text="#{cust_no}"></th>
+			<th th:text="#{last_nm}"></th>
+			<th th:text="#{first_nm}"></th>
+			<th th:text="#{last_nm_kana}"></th>
+			<th th:text="#{first_nm_kana}"></th>
+			<th th:text="#{gender_cd}"></th>
+			<th th:text="#{mail_address}"></th>
+			<th th:text="#{tel_no}"></th>
+			<th th:text="#{birth_date}"></th>
+			<th th:text="#{home_address}"></th>
+			<th th:text="#{post_number}"></th>
+			<th th:text="#{reg_date}"></th>
 		</tr>
 		<tr th:each="index : ${list}" th:object="${index}">
 			<td th:text="${index.cust_no}">1</td>
@@ -26,7 +30,11 @@
 			<td th:text="${index.first_nm}">1</td>
 			<td th:text="${index.last_nm_kana}">1</td>
 			<td th:text="${index.first_nm_kana}">1</td>
-			<td th:text="${index.gender_cd}">1</td>
+			<td>
+				<span th:if="${index.gender_cd eq 1}" ><div>男</div></span>
+				<span th:if="${index.gender_cd eq 2}" ><div>女</div></span>
+				<span th:if="${index.gender_cd eq 3}" ><div>未定義</div></span>
+			</td>
 			<td th:text="${index.mail_address}">1</td>
 			<td th:text="${index.tel_no}">1</td>
 			<td th:text="${index.birth_date}">1</td>
