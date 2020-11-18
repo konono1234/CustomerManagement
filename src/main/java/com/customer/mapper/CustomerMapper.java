@@ -1,6 +1,7 @@
 package com.customer.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -8,8 +9,7 @@ import com.customer.bean.CustomerBean;
 import com.customer.controller.CustomerForm;
 
 /*
- * m_customerテーブルへSQL文を実行するMapperクラスです
- * 
+ * m_customerテーブルへSQL文を実行するMapperクラスです データを受け取ったり受け渡したりします
  */
 
 @Mapper
@@ -24,5 +24,8 @@ public interface CustomerMapper {
 
   @Select("SELECT * FROM m_customer where cust_no = #{cust_no}")
   public List<CustomerBean> selectByNumber(Integer cust_no);
+
+  @Delete("DELETE FROM m_customer where cust_no = #{cust_no}")
+  public void delete(Integer cust_no);
 
 }

@@ -36,6 +36,11 @@ public class CustomerService {
     return customerList;
   }
 
+  // delete
+  public void deleteByNumber(Integer cust_no) {
+    customerMapper.delete(cust_no);
+  }
+
 
 
 }

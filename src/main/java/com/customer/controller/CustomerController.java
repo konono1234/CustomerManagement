@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.customer.bean.CustomerBean;
 import com.customer.service.CustomerService;
 
 
 /*
- * Beanにデータを受け渡したりServiceを起動するコントローラークラスです
+ * Serviceを起動したりViewにデータを渡すコントローラークラスです
  * 
  */
 
@@ -29,8 +30,8 @@ public class CustomerController {
   CustomerService customerService;
 
   /*
-   * 「/customer」を拾ってlistにデータを格納してcustomerフォルダのindex.htmlに飛ばす
-   * 
+   * 「/customer」を拾ってlistにサービスから渡されたデータを格納してindex.htmlに飛ばす。
+   * cusomer/indexは、customerフォルダのindex.htmlというこｐと
    */
 
 
@@ -44,7 +45,7 @@ public class CustomerController {
   }
 
   /*
-   * create.htmlにFormで入力されたデータを格納するインスタンスを渡す
+   * index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
   @RequestMapping(value = "/customer/create")
   public String create(@ModelAttribute("customerForm") CustomerForm customerForm) {
@@ -52,13 +53,16 @@ public class CustomerController {
   }
 
   /*
-   * create.htmlでデータが格納されたインスタンスをDBにinsertします
+   * create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
    */
   @RequestMapping(value = "/customer/save")
   public String saveForm(CustomerForm customerForm) {
     customerService.insertNewCustomer(customerForm);
     return "customer/save";
   }
+  /*
+   * index.htmlでリンクを踏むと顧客番号のデータも同時に取得しDBに検索をかける。 将来的にチェックボックス使いたい
+   */
 
   @RequestMapping(value = "/customer/{cust_no}", method = RequestMethod.GET)
   public ModelAndView detail(@PathVariable Integer cust_no) {
@@ -70,16 +74,17 @@ public class CustomerController {
 
     return mv;
   }
-
   /*
-   * 没コード save.htmlで間違いが無いか確認したデータが入ったインスタンスをDBにinsertして
-   * 
-   * @RequestMapping(value = "customer/save-create") public String saveCreate(CustomerForm
-   * customerForm, Model model) {
-   * 
-   * 
-   * List<CustomerBean> list = customerService.selectIndex(); model.addAttribute("list", list);
-   * return "customer/index"; }
+   * 削除機能です。削除画面は用意せずにdeleteしたら削除メッセージを渡しつつ一覧画面に戻ります。 将来的にJavaScriptで「本当に削除しますか？」とポップアップを出したい
    */
 
+  @RequestMapping(value = "/customer/delete/{cust_no}", method = RequestMethod.GET)
+  public String delete(@PathVariable Integer cust_no, RedirectAttributes attributes, Model model) {
+    customerService.deleteByNumber(cust_no);
+
+    attributes.addFlashAttribute("deleteMessage", "顧客番号:" + cust_no + "を削除しました");
+
+    return "redirect:/customer";
+
+  }
 }

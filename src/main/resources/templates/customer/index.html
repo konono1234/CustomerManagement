@@ -6,11 +6,20 @@
 </head>
 <body>
 	<div>
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+	</div>
+	<div>
 		<li role="presentation"><a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
 	</div>
 
 	<table border="1">
 		<tr>
+			<!-- 文字化け、??～～～??、「□」などが表示される場合、文字コードや半角全角をチェック（特に全角の改行は「□」となって化けて出てくる -->
+			
 			<th　th:text="#{cust_no}"></th>
 			<th th:text="#{last_nm}"></th>
 			<th th:text="#{first_nm}"></th>
@@ -24,6 +33,9 @@
 			<th th:text="#{post_number}"></th>
 			<th th:text="#{reg_date}"></th>
 		</tr>
+		
+		<!-- Controllerから渡されたBeanが入っているListを取り出し、Beanに格納された各フィールドを表示します -->
+		
 		<tr th:each="index : ${list}" th:object="${index}">
 			<td>
 				<a href="/customer/${index.cust_no}" th:href="@{/customer/{cust_no}(cust_no=${index.cust_no})}" th:text="${index.cust_no}">1</a>
@@ -32,6 +44,8 @@
 			<td th:text="${index.first_nm}">1</td>
 			<td th:text="${index.last_nm_kana}">1</td>
 			<td th:text="${index.first_nm_kana}">1</td>
+			
+			<!-- DB上では性別はIntegerで管理されているのでth:ifを使います -->
 			<td>
 				<span th:if="${index.gender_cd eq 1}" ><div>男</div></span>
 				<span th:if="${index.gender_cd eq 2}" ><div>女</div></span>
@@ -43,6 +57,10 @@
 			<td th:text="${index.home_address}">1</td>
 			<td th:text="${index.post_number}">1</td>
 			<td th:text="${index.reg_date}">1</td>
+			<td>
+				<a href="/customer/edit/${index.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${index.cust_no})}">edit</a>
+				<a href="/customer/delete/${index.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${index.cust_no})}">delete</a>
+			</td>
 		</tr>
 		
 	</table>

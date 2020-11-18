@@ -8,7 +8,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 
-// フォームで入力されたデータを一時的に格納するクラス
+// フォームで入力されたデータを一時的に格納するクラス。
+// CustomerBeanはDBから受け取ったデータを格納するリポジトリで、このクラスはDBに格納するためのリポジトリです。
 // 必要ならシリアルIDを後に定義する
 @SuppressWarnings("serial")
 public class CustomerForm implements Serializable {
