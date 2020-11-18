@@ -62,7 +62,9 @@
 			<th th:text="#{reg_date}"></th>
 		</tr>
 		<tr th:each="index : ${list}" th:object="${index}">
-			<td th:text="${index.cust_no}">1</td>
+			<td>
+				<a href="/customer/${index.cust_no}" th:href="@{/customer/{cust_no}(cust_no=${index.cust_no})}" th:text="${index.cust_no}">1</a>
+			</td>
 			<td th:text="${index.last_nm}">1</td>
 			<td th:text="${index.first_nm}">1</td>
 			<td th:text="${index.last_nm_kana}">1</td>

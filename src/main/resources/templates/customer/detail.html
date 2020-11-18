@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:text="customer.detail.title">customer.detail.title</title>
 </head>
 <body>
+	<div>
+		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
+	</div>
+	
+	<div>
+		<h1 th:text="#{customer.detail.title}">customer.detail.title</h1>
+	</div>
 
+	<table border="1">
+		<tr>
+			<th　th:text="#{cust_no}"></th>
+			<th th:text="#{last_nm}"></th>
+			<th th:text="#{first_nm}"></th>
+			<th th:text="#{last_nm_kana}"></th>
+			<th th:text="#{first_nm_kana}"></th>
+			<th th:text="#{gender_cd}"></th>
+			<th th:text="#{mail_address}"></th>
+			<th th:text="#{tel_no}"></th>
+			<th th:text="#{birth_date}"></th>
+			<th th:text="#{home_address}"></th>
+			<th th:text="#{post_number}"></th>
+			<th th:text="#{reg_date}"></th>
+		</tr>
+		<tr th:each="list : ${list}" th:object="${list}">
+			<td th:text="${list.cust_no}"></td>
+			<td th:text="${list.last_nm}">1</td>
+			<td th:text="${list.first_nm}">1</td>
+			<td th:text="${list.last_nm_kana}">1</td>
+			<td th:text="${list.first_nm_kana}">1</td>
+			<td>
+				<span th:if="${list.gender_cd eq 1}" ><div>男</div></span>
+				<span th:if="${list.gender_cd eq 2}" ><div>女</div></span>
+				<span th:if="${list.gender_cd eq 3}" ><div>未定義</div></span>
+			</td>
+			<td th:text="${list.mail_address}">1</td>
+			<td th:text="${list.tel_no}">1</td>
+			<td th:text="${list.birth_date}">1</td>
+			<td th:text="${list.home_address}">1</td>
+			<td th:text="${list.post_number}">1</td>
+			<td th:text="${list.reg_date}">1</td>
+		</tr>
+		
+	</table>
+		
 </body>
 </html>

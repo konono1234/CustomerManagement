@@ -43,7 +43,7 @@ public class CustomerForm implements Serializable {
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   private String reg_date = sdf.format(calender.getTime());
 
-  private Date sql_reg_date = this.sql_reg_date = Date.valueOf(reg_date);;
+  private Date sql_reg_date = Date.valueOf(reg_date);;
 
   public Integer getCust_no() {
     return cust_no;
