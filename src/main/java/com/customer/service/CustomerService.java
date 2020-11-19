@@ -53,6 +53,17 @@ public class CustomerService {
     return searchList;
   }
 
+  // update
+  public void updatebyNumber(CustomerForm customerForm) {
+    customerMapper.update(customerForm);
+  }
+
+  // createCustomerForm
+  public CustomerForm customerFormByNumber(Integer cust_no) {
+
+    return customerMapper.customerFormCreate(cust_no);
+  }
+
 
 
 }

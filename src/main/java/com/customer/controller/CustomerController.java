@@ -57,9 +57,17 @@ public class CustomerController {
   /*
    * 保存機能です。create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
    */
-  @RequestMapping(value = "/customer/save")
-  public String saveForm(CustomerForm customerForm) {
+  @RequestMapping(value = "/customer/save-create")
+  public String saveForm(CustomerForm customerForm, Model model) {
+
     customerService.insertNewCustomer(customerForm);
+
+    return "customer/save";
+  }
+
+  @RequestMapping(value = "/cusotmer/save")
+  public String save(CustomerForm customerForm, Model model) {
+    model.addAttribute("customerForm", customerForm);
     return "customer/save";
   }
   /*
@@ -106,5 +114,32 @@ public class CustomerController {
     model.addAttribute("searchList", searchList);
 
     return "customer/search";
+  }
+
+  /*
+   * 更新画面に顧客情報が入ったデータを渡すメソッドです。
+   */
+  @RequestMapping(value = "/customer/edit/{cust_no}", method = RequestMethod.GET)
+  public String update(@ModelAttribute CustomerForm customerForm, @PathVariable Integer cust_no,
+      Model model) {
+
+    customerForm = customerService.customerFormByNumber(cust_no);
+    model.addAttribute("customerForm", customerForm);
+
+    System.out.println(customerForm.getLast_nm());
+    System.out.println(customerForm.getFirst_nm());
+
+    return "customer/edit";
+  }
+
+  /*
+   * 更新保存機能です。渡されたデータでupdateを行います
+   */
+  @RequestMapping(value = "/customer/save-edit", method = RequestMethod.POST)
+  public String updateSave(CustomerForm customerForm) {
+
+    customerService.updatebyNumber(customerForm);
+
+    return ("customer/save");
   }
 }
