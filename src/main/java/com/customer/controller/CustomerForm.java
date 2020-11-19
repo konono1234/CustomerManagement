@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
 
 
 // フォームで入力されたデータを一時的に格納するクラス。
@@ -161,10 +160,7 @@ public class CustomerForm implements Serializable {
     this.sql_reg_date = Date.valueOf(reg_date);
   }
 
-  @Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
-  }
+
 
   public String getKey() {
     return key;
