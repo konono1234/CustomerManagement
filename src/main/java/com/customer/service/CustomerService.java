@@ -42,14 +42,18 @@ public class CustomerService {
   }
 
   // search-word
+  /*
+   * public List<CustomerBean> searchByKeyword(CustomerForm customerForm) { List<CustomerBean>
+   * searchList = customerMapper.selectByWord(customerForm); return searchList; }
+   * 
+   * // search-number
+   * 
+   * public List<CustomerBean> searchByKeynumber(CustomerForm customerForm) { List<CustomerBean>
+   * searchList = customerMapper.searchByNumber(customerForm); return searchList; }
+   */
+  // 検索機能は1つに統合しました
   public List<CustomerBean> searchByKeyword(CustomerForm customerForm) {
-    List<CustomerBean> searchList = customerMapper.selectByWord(customerForm);
-    return searchList;
-  }
-
-  // search-number
-  public List<CustomerBean> searchByKeynumber(CustomerForm customerForm) {
-    List<CustomerBean> searchList = customerMapper.searchByNumber(customerForm);
+    List<CustomerBean> searchList = customerMapper.searchByWord(customerForm);
     return searchList;
   }
 

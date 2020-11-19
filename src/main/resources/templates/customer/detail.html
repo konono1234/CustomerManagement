@@ -45,6 +45,10 @@
 			<td th:text="${list.home_address}">1</td>
 			<td th:text="${list.post_number}">1</td>
 			<td th:text="${list.reg_date}">1</td>
+			<td>
+			<a href="/customer/edit/${list.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${list.cust_no})}">edit</a>
+		<a href="/customer/delete/${list.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${list.cust_no})}">delete</a>
+			</td>
 		</tr>
 		
 	</table>

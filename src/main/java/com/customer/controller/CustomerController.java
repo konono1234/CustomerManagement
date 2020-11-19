@@ -105,12 +105,14 @@ public class CustomerController {
 
     List<CustomerBean> searchList = new ArrayList<CustomerBean>();
 
-    if (customerForm.getKey().equals("cust_no") || customerForm.getKey().equals("birth_date")
-        || customerForm.getKey().equals("reg_date") || customerForm.getKey().equals("gender_cd")) {
-      searchList = customerService.searchByKeynumber(customerForm);
-    } else {
-      searchList = customerService.searchByKeyword(customerForm);
-    }
+    // if (customerForm.getKey().equals("cust_no") || customerForm.getKey().equals("birth_date")
+    // || customerForm.getKey().equals("reg_date") || customerForm.getKey().equals("gender_cd")) {
+    // searchList = customerService.searchByKeynumber(customerForm);
+    // } else {
+    // searchList = customerService.searchByKeyword(customerForm);
+    // }
+    //1つに統合しました
+    searchList = customerService.searchByKeyword(customerForm);
     model.addAttribute("searchList", searchList);
 
     return "customer/search";
