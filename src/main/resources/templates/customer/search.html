@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<titleb th:text="customer.search.title">customer.search.index</title>
+<title th:text="customer.search.title">customer.search.title</title>
 </head>
 <body>
 	<div>
@@ -13,10 +13,13 @@
 		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
 	<div>
-		<li role="presentation"><a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
+		<h1 th:text="#{customer.search.title}">customer.search.title</h1>
 	</div>
 	<div>
-		<form action="/customer/search" th:action="@{/customer/search}" method="poost" th:object="${customerForm}">
+		<li role="presentation"><a href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">index</a></li>
+	</div>
+	<div>
+		<form action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
 			<select name="key" th:field="*{key}" >
 				<option value="cust_no" th:text="#{cust_no}"></option>
 				<option value="last_nm" th:text="#{last_nm}"></option>

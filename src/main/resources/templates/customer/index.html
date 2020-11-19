@@ -16,7 +16,7 @@
 		<a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
 	</div>
 	<div>
-		<form action="/customer/search" th:action="@{/customer/search}" method="poost" th:object="${customerForm}">
+		<form action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
 			<select name="key" th:field="*{key}" >
 				<option value="cust_no" th:text="#{cust_no}"></option>
 				<option value="last_nm" th:text="#{last_nm}"></option>

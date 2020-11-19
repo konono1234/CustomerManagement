@@ -1,5 +1,6 @@
 package com.customer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,16 +90,19 @@ public class CustomerController {
   }
 
   /*
-   * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。
+   * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。 数字で検索する場合にはselectBykeybumberを使います
    */
-  @RequestMapping(value = "/customer/search", method = RequestMethod.GET)
+  @RequestMapping(value = "/customer/search", method = RequestMethod.POST)
   public String delete(CustomerForm customerForm, Model model) {
 
-    // 確認用
-    System.out.println(customerForm.getKey());
-    System.out.println(customerForm.getKeyword());
+    List<CustomerBean> searchList = new ArrayList<CustomerBean>();
 
-    List<CustomerBean> searchList = customerService.searchByKeyword(customerForm);
+    if (customerForm.getKey().equals("cust_no") || customerForm.getKey().equals("birth_date")
+        || customerForm.getKey().equals("reg_date") || customerForm.getKey().equals("gender_cd")) {
+      searchList = customerService.searchByKeynumber(customerForm);
+    } else {
+      searchList = customerService.searchByKeyword(customerForm);
+    }
     model.addAttribute("searchList", searchList);
 
     return "customer/search";

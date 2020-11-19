@@ -9,7 +9,7 @@ import com.customer.bean.CustomerBean;
 import com.customer.controller.CustomerForm;
 
 /*
- * m_customerテーブルへSQL文を実行するMapperクラスです データを受け取ったり受け渡したりします
+ * m_customerテーブルへSQL文を実行するMapperクラスです データを受け取ったり受け渡したりします あまり似すぎるメソッド名だとエラーが生じるらしい。
  */
 
 @Mapper
@@ -28,7 +28,12 @@ public interface CustomerMapper {
   @Delete("DELETE FROM m_customer where cust_no = #{cust_no}")
   public void delete(Integer cust_no);
 
+  // あいまい検索の為に%を結合させます
   @Select("SELECT * FROM m_customer where ${key} like CONCAT('%', #{keyword}, '%')")
-  public List<CustomerBean> selectByKeyword(CustomerForm customerForm);
+  public List<CustomerBean> selectByWord(CustomerForm customerForm);
+
+  // 型が違う同士での検索はエラーになるのでキャスト変換を行います
+  @Select("SELECT * FROM m_customer where CAST(${key} AS TEXT) like CONCAT('%', ${keynumber}, '%')")
+  public List<CustomerBean> searchByNumber(CustomerForm customerForm);
 
 }
