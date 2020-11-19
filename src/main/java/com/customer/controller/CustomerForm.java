@@ -38,6 +38,10 @@ public class CustomerForm implements Serializable {
 
   private String post_number;
 
+  private String key;
+
+  private String keyword;
+
   // 登録日の日付をStringとDate型で取得します。String->フォーム用。Date->DB用
 
   Calendar calender = Calendar.getInstance();
@@ -156,6 +160,22 @@ public class CustomerForm implements Serializable {
   @Override
   public String toString() {
     return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
+  }
+
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public String getKeyword() {
+    return keyword;
+  }
+
+  public void setKeyword(String keyword) {
+    this.keyword = keyword;
   }
 
 

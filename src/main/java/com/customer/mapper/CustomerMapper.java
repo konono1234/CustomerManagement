@@ -28,4 +28,7 @@ public interface CustomerMapper {
   @Delete("DELETE FROM m_customer where cust_no = #{cust_no}")
   public void delete(Integer cust_no);
 
+  @Select("SELECT * FROM m_customer where ${key} like CONCAT('%', #{keyword}, '%')")
+  public List<CustomerBean> selectByKeyword(CustomerForm customerForm);
+
 }

@@ -13,8 +13,31 @@
 		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
 	<div>
-		<li role="presentation"><a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
+		<a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
 	</div>
+	<div>
+		<form action="/customer/search" th:action="@{/customer/search}" method="poost" th:object="${customerForm}">
+			<select name="key" th:field="*{key}" >
+				<option value="cust_no" th:text="#{cust_no}"></option>
+				<option value="last_nm" th:text="#{last_nm}"></option>
+				<option value="first_nm" th:text="#{first_nm}"></option>
+				<option value="last_nm_kana" th:text="#{last_nm_kana}"></option>
+				<option value="first_nm_kana" th:text="#{first_nm_kana}"></option>
+				<option value="gender_cd" th:text="#{gender_cd}"></option>
+				<option value="mail_address" th:text="#{mail_address}"></option>
+				<option value="tel_no" th:text="#{tel_no}"></option>
+				<option value="birth_date" th:text="#{birth_date}"></option>
+				<option value="home_address" th:text="#{home_address}"></option>
+				<option value="post_number" th:text="#{post_number}"></option>
+				<option value="reg_date" th:text="#{reg_date}"></option>
+			</select>
+			<span>
+				<input type="text" name="keyward" class="form-control" th:field="*{keyword}" size="30" placeholder="キーワードを入力してください" />	
+				<input type="submit" value="検索" />
+			</span>
+		</form>
+	</div>
+	
 
 	<table border="1">
 		<tr>
@@ -36,7 +59,7 @@
 		
 		<!-- Controllerから渡されたBeanが入っているListを取り出し、Beanに格納された各フィールドを表示します -->
 		
-		<tr th:each="index : ${list}" th:object="${index}">
+		<tr th:each="index : ${list}" th:object="${list}">
 			<td>
 				<a href="/customer/${index.cust_no}" th:href="@{/customer/{cust_no}(cust_no=${index.cust_no})}" th:text="${index.cust_no}">1</a>
 			</td>

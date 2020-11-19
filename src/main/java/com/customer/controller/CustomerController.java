@@ -40,12 +40,13 @@ public class CustomerController {
 
     List<CustomerBean> list = customerService.selectIndex();
     model.addAttribute("list", list);
+    model.addAttribute("customerForm", new CustomerForm());
 
     return "customer/index";
   }
 
   /*
-   * index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
+   * 新規登録機能です。index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
   @RequestMapping(value = "/customer/create")
   public String create(@ModelAttribute("customerForm") CustomerForm customerForm) {
@@ -53,7 +54,7 @@ public class CustomerController {
   }
 
   /*
-   * create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
+   * 保存機能です。create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
    */
   @RequestMapping(value = "/customer/save")
   public String saveForm(CustomerForm customerForm) {
@@ -61,7 +62,7 @@ public class CustomerController {
     return "customer/save";
   }
   /*
-   * index.htmlでリンクを踏むと顧客番号のデータも同時に取得しDBに検索をかける。 将来的にチェックボックス使いたい
+   * 検索機能です。index.htmlでリンクを踏むと顧客番号のデータも同時に取得しDBに検索をかける。 将来的にチェックボックス使いたい
    */
 
   @RequestMapping(value = "/customer/{cust_no}", method = RequestMethod.GET)
@@ -85,6 +86,21 @@ public class CustomerController {
     attributes.addFlashAttribute("deleteMessage", "顧客番号:" + cust_no + "を削除しました");
 
     return "redirect:/customer";
+  }
 
+  /*
+   * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。
+   */
+  @RequestMapping(value = "/customer/search", method = RequestMethod.GET)
+  public String delete(CustomerForm customerForm, Model model) {
+
+    // 確認用
+    System.out.println(customerForm.getKey());
+    System.out.println(customerForm.getKeyword());
+
+    List<CustomerBean> searchList = customerService.searchByKeyword(customerForm);
+    model.addAttribute("searchList", searchList);
+
+    return "customer/search";
   }
 }

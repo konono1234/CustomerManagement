@@ -41,6 +41,12 @@ public class CustomerService {
     customerMapper.delete(cust_no);
   }
 
+  // search
+  public List<CustomerBean> searchByKeyword(CustomerForm customerForm) {
+    List<CustomerBean> searchList = customerMapper.selectByKeyword(customerForm);
+    return searchList;
+  }
+
 
 
 }
