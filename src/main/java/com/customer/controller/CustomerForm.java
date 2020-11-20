@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 
-// フォームで入力されたデータを一時的に格納するクラス
+
+// フォームで入力されたデータを一時的に格納するクラス。
+// CustomerBeanはDBから受け取ったデータを格納するリポジトリで、このクラスはDBに格納するためのリポジトリです。
 // 必要ならシリアルIDを後に定義する
 @SuppressWarnings("serial")
 public class CustomerForm implements Serializable {
@@ -37,13 +37,21 @@ public class CustomerForm implements Serializable {
 
   private String post_number;
 
+  private String key;
+
+  // 検索用に入力されたデータをセッターでStringかIntegerのどちらかに入れます。Stirngで顧客番号などのIntegerを検索するとエラーになるため。
+  // private String keyword;
+  // private Integer keynumber;
+  // 1つにまとめました
+  private String keyword;
+
   // 登録日の日付をStringとDate型で取得します。String->フォーム用。Date->DB用
 
   Calendar calender = Calendar.getInstance();
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   private String reg_date = sdf.format(calender.getTime());
 
-  private Date sql_reg_date = this.sql_reg_date = Date.valueOf(reg_date);;
+  private Date sql_reg_date = Date.valueOf(reg_date);;
 
   public Integer getCust_no() {
     return cust_no;
@@ -152,10 +160,46 @@ public class CustomerForm implements Serializable {
     this.sql_reg_date = Date.valueOf(reg_date);
   }
 
-  @Override
-  public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
+
+
+  public String getKey() {
+    return key;
   }
+
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public String getKeyword() {
+    return keyword;
+  }
+
+
+  public void setKeyword(String keyword) {
+    this.keyword = keyword;
+    if (this.getKey().equals("gender_cd") && keyword.equals("男")) {
+      this.keyword = "1";
+    } else if (this.getKey().equals("gender_cd") && keyword.equals("女")) {
+      this.keyword = "2";
+    } else if (this.getKey().equals("gender_cd") && keyword.equals("未定義")) {
+      this.keyword = "3";
+    } else {
+      this.keyword = keyword;
+    }
+    // 没になりました
+    /*
+     * 数字が入力されたら数字としてキーワードを保存します. if (this.getKey().equals("cust_no") ||
+     * this.getKey().equals("birth_date") || this.getKey().equals("reg_date")) { this.keynumber =
+     * Integer.parseInt(keyword); } else if (this.getKey().equals("gender_cd") &&
+     * keyword.equals("男")) { this.keynumber = 1; } else if (this.getKey().equals("gender_cd") &&
+     * keyword.equals("女")) { this.keynumber = 2; } else if (this.getKey().equals("gender_cd") &&
+     * keyword.equals("未定義")) { this.keynumber = 3; } else { this.keyword = keyword; }
+     */
+
+  }
+  /*
+   * public Integer getKeynumber() { return keynumber; }
+   */
 
 
 }

@@ -28,15 +28,58 @@ public class CustomerService {
   @Autowired
   CustomerMapper customerMapper;
 
+  // index
   public List<CustomerBean> selectIndex() {
     List<CustomerBean> customerList = customerMapper.selectIndexAll();
     return customerList;
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+  // create
+>>>>>>> edit
   public void insertNewCustomer(CustomerForm customerForm) {
     customerMapper.create(customerForm);
+  }
+
+  // detail
+  public List<CustomerBean> findByNumber(Integer cust_no) {
+    List<CustomerBean> customerList = customerMapper.selectByNumber(cust_no);
+    return customerList;
+  }
+
+  // delete
+  public void deleteByNumber(Integer cust_no) {
+    customerMapper.delete(cust_no);
+  }
+
+  // search-word
+  /*
+   * public List<CustomerBean> searchByKeyword(CustomerForm customerForm) { List<CustomerBean>
+   * searchList = customerMapper.selectByWord(customerForm); return searchList; }
+   * 
+   * // search-number
+   * 
+   * public List<CustomerBean> searchByKeynumber(CustomerForm customerForm) { List<CustomerBean>
+   * searchList = customerMapper.searchByNumber(customerForm); return searchList; }
+   */
+  // 検索機能は1つに統合しました
+  public List<CustomerBean> searchByKeyword(CustomerForm customerForm) {
+    List<CustomerBean> searchList = customerMapper.searchByWord(customerForm);
+    return searchList;
+  }
+
+  // update
+  public void updatebyNumber(CustomerForm customerForm) {
+    customerMapper.update(customerForm);
+  }
+
+  // createCustomerForm
+  public CustomerForm customerFormByNumber(Integer cust_no) {
+
+    return customerMapper.customerFormCreate(cust_no);
   }
 
 

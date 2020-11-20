@@ -1,7 +1,7 @@
 package com.customer.bean;
 
 /*
- * 顧客情報のBeanクラスです。Repository,entityともいう
+ * 顧客情報のBeanクラスです。Repository,entityともいう。 DBから受け取ったデータを格納する。貰う側。渡す側はCustomerFormクラス。
  */
 
 public class CustomerBean {

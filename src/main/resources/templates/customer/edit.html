@@ -1,10 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:text="#{customer.edit.title}">Create title here</title>
 </head>
 <body>
+	<div>
+		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
+	</div>
+	<div>
+		<h1 th:text="#{customer.edit.title}">customer.edit.title</h1>
+	</div>
+	
+	<div>
+		<form role="form" action="/customer/save-edit" th:action="@{/customer/save-edit}" th:object="${customerForm}" method="post">
+			
+			<!-- 顧客番号 -->
+			<div>
+				<label for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
+				<div>
+					<input id="id_cust_no" type="text" name="cust_no" th:field="*{cust_no}" th:placeholder="${cust_no}" />
+					
+				</div>
+			</div>
+			
+			<!--  氏　-->
+			<div>
+				<label for="id_last_nm" th:text="#{last_nm}">last_nm</label>
+				<div>
+					<input id="id_last_nm" type="text" name="last_nm" th:field="*{last_nm}" th:placeholder="${last_nm}" />
+					
+				</div>
+			</div>
+			
+			<!--  名　-->
+			<div>
+				<label for="id_first_nm" th:text="#{first_nm}">first_nm</label>
+				<div>
+					<input id="id_first_nm" type="text" name="first_nm" th:field="*{first_nm}" th:placeholder="${first_nm}" />
+					
+				</div>
+			</div>
+			
+			<!--  氏（フリガナ）　-->
+			<div>
+				<label for="id_last_nm_kana" th:text="#{last_nm_kana}"></label>
+				<div>
+					<input id="id_last_nm_kana" type="text" name="last_nm_kana" th:field="*{last_nm_kana}" th:placeholder="${last_nm_kana}" />
+					
+				</div>
+			</div>
+			
+			<!--  名（フリガナ）　-->
+			<div>
+				<label for="id_first_nm_kana" th:text="#{first_nm_kana}"></label>
+				<div>
+					<input id="id_first_nm_kana" type="text" name="first_nm_kana" th:field="*{first_nm_kana}" th:placeholder="${first_nm_kana}" />
+					
+				</div>
+			</div>
+			
+			<!--  性別コード　-->
+			<div>
+				<label for="id_gender_cd" th:text="#{gender_cd}"></label>
+				<div>
+					<select id="id_gender_cd"  name="gender_cd" th:field="*{gender_cd}" >
+						<option value="1">男</option>
+						<option value="2">女</option>
+						<option value="3">どちらでも無い</option>
+					</select>
+					
+				</div>
+			</div>
+			
+			<!--  メールアドレス -->
+			<div>
+				<label for="id_mail_address" th:text="#{mail_address}"></label>
+				<div>
+					<input id="id_mail_address" type="text" name="mail_address" th:field="*{mail_address}" th:placeholder="${mail_address}" />
+					
+				</div>
+			</div>
+			
+			<!-- 電話番号 -->
+			<div>
+				<label for="id_tel_no" th:text="#{tel_no}"></label>
+				<div>
+					<input id="id_tel_no" type="text" name="tel_no" th:field="*{tel_no}" th:placeholder="${tel_no}" />
+					
+				</div>
+			</div>
+			
+			<!--  誕生日　-->
+			<div>
+				<label for="id_birth_date" th:text="#{birth_date}"></label>
+				<div>
+					<input id="id_birth_date" type="date" name="birth_date" th:field="*{birth_date}" th:placeholder="${birth_date}" />
+					
+				</div>
+			</div>
+			
+			<!--  住所　-->
+			<div>
+				<label for="id_home_address" th:text="#{home_address}"></label>
+				<div>
+					<input id="id_home_address" type="text" name="home_address" th:field="*{home_address}" th:placeholder="${home_address}" />
+					
+				</div>
+			</div>
+			
+			<!--  郵便番号-->
+			<div>
+				<label for="id_post_number" th:text="#{post_number}"></label>
+				<div>
+					<input id="id_post_number" type="text" name="post_number" th:field="*{post_number}" th:placeholder="${post_number}" />
+					
+				</div>
+			</div>
+			
+			
+			<div>
+				<input type="submit" value="save" />
+			</div>
+		</form>
+		
+	</div>
 
 </body>
 </html>
