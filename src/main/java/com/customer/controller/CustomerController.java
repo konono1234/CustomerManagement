@@ -111,8 +111,7 @@ public class CustomerController {
     // } else {
     // searchList = customerService.searchByKeyword(customerForm);
     // }
-    //1つに統合しました
-    searchList = customerService.searchByKeyword(customerForm);
+    // 1つに統合しました
     model.addAttribute("searchList", searchList);
 
     return "customer/search";
