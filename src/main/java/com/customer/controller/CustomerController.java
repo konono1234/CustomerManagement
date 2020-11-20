@@ -47,6 +47,16 @@ public class CustomerController {
   }
 
   /*
+   * ソート機能です。選択された項目で並び替えます
+   */
+  @RequestMapping(value = "/customer/sort", method = RequestMethod.POST)
+  public String sort(CustomerForm customerForm, Model model) {
+    List<CustomerBean> list = customerService.sortIndex(customerForm);
+    model.addAttribute("list", list);
+    return "customer/index";
+  }
+
+  /*
    * 新規登録機能です。index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
   @RequestMapping(value = "/customer/create")

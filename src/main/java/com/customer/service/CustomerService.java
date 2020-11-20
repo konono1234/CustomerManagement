@@ -25,6 +25,12 @@ public class CustomerService {
     return customerList;
   }
 
+  // sort
+  public List<CustomerBean> sortIndex(CustomerForm customerForm) {
+    List<CustomerBean> customerList = customerMapper.sortIndexAll(customerForm);
+    return customerList;
+  }
+
   // create
   public void insertNewCustomer(CustomerForm customerForm) {
     customerMapper.create(customerForm);

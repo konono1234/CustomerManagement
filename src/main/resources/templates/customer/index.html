@@ -38,6 +38,30 @@
 		</form>
 	</div>
 	
+	<div>
+		<form action="/customer/sort" th:action="@{/customer/sort}" method="post" th:object="${customerForm}">
+			<select name="key" th:field="*{key}">
+				<option value="cust_no" th:text="#{cust_no}"></option>
+				<option value="last_nm" th:text="#{last_nm}"></option>
+				<option value="first_nm" th:text="#{first_nm}"></option>
+				<option value="last_nm_kana" th:text="#{last_nm_kana}"></option>
+				<option value="first_nm_kana" th:text="#{first_nm_kana}"></option>
+				<option value="gender_cd" th:text="#{gender_cd}"></option>
+				<option value="mail_address" th:text="#{mail_address}"></option>
+				<option value="tel_no" th:text="#{tel_no}"></option>
+				<option value="birth_date" th:text="#{birth_date}"></option>
+				<option value="home_address" th:text="#{home_address}"></option>
+				<option value="post_number" th:text="#{post_number}"></option>
+				<option value="reg_date" th:text="#{reg_date}"></option>
+			</select>
+			<select name="sort" th:field="*{sort}">
+				<option value="asc">昇順</option>
+				<option value="desc">降順</option>
+			</select>
+			<input type="submit" value="並び替え">
+		</form>
+	</div>
+	
 
 	<table border="1">
 		<tr>

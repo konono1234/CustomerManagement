@@ -53,6 +53,8 @@ public class CustomerForm implements Serializable {
 
   private Date sql_reg_date = Date.valueOf(reg_date);;
 
+  private String sort;
+
   public Integer getCust_no() {
     return cust_no;
   }
@@ -200,6 +202,14 @@ public class CustomerForm implements Serializable {
   /*
    * public Integer getKeynumber() { return keynumber; }
    */
+
+  public String getSort() {
+    return sort;
+  }
+
+  public void setSort(String sort) {
+    this.sort = sort;
+  }
 
 
 }
