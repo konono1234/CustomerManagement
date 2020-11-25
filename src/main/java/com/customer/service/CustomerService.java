@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.customer.bean.CustomerBean;
-import com.customer.controller.CustomerForm;
+import com.customer.bean.CustomerForm;
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -33,7 +33,7 @@ public class CustomerService {
 
   // create
   public void insertNewCustomer(CustomerForm customerForm) {
-    customerMapper.create(customerForm);
+    customerMapper.insertInto(customerForm);
   }
 
   // detail
@@ -64,7 +64,7 @@ public class CustomerService {
   }
 
   // update
-  public void updatebyNumber(CustomerForm customerForm) {
+  public void updateByNumber(CustomerForm customerForm) {
     customerMapper.update(customerForm);
   }
 

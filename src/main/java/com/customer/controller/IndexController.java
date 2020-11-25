@@ -1,4 +1,4 @@
-package com.customer.web;
+package com.customer.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

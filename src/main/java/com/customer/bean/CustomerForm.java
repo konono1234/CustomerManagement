@@ -1,9 +1,14 @@
-package com.customer.controller;
+package com.customer.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 
 
 
@@ -13,28 +18,52 @@ import java.util.Calendar;
 @SuppressWarnings("serial")
 public class CustomerForm implements Serializable {
 
+  @NotNull(message = "{NotNull}")
   private Integer cust_no;
 
+  @NotNull(message = "{NotNull}")
+  @Pattern(regexp = "^[0-9]*$", message = "{0}は半角数字のみで入力してください")
+  @Size(min = 1, max = 8, message = "{Size}")
+  private String check_no;
+
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 16, message = "{Size}")
   private String last_nm;
 
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 16, message = "{Size}")
   private String first_nm;
 
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 24, message = "{Size}")
   private String last_nm_kana;
 
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 24, message = "{Size}")
   private String first_nm_kana;
 
   private byte gender_cd;
 
+  @Size(min = 0, max = 100, message = "{Size}")
+  @Email(message = "{Email}")
   private String mail_address;
 
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 13, message = "{Size}")
   private String tel_no;
 
+  @NotNull(message = "{NotNull}")
   private String birth_date;
 
   private Date sql_birth_date;
 
+  @NotNull(message = "{NotNull}")
+  @Size(min = 1, max = 48, message = "{Size}")
   private String home_address;
 
+  @NotNull(message = "{NotNull}")
+  @Length(min = 8, max = 8, message = "{Size}")
+  @Pattern(regexp = "^([0-9]{3}[-]?[0-9]{4})?$", message = "{0}は〇〇〇-〇〇〇〇形式で入力してください")
   private String post_number;
 
   private String key;
@@ -61,6 +90,21 @@ public class CustomerForm implements Serializable {
 
   public void setCust_no(Integer cust_no) {
     this.cust_no = cust_no;
+  }
+
+  public void setCheck_no(String check_no) {
+    this.check_no = check_no;
+    try {
+      if (this.check_no != null) {
+        this.cust_no = Integer.parseInt(check_no);
+      }
+    } catch (Exception e) {
+
+    }
+  }
+
+  public String getCheck_no() {
+    return check_no;
   }
 
   public String getLast_nm() {
@@ -130,7 +174,12 @@ public class CustomerForm implements Serializable {
 
   public void setBirth_date(String birth_date) {
     this.birth_date = birth_date;
-    this.sql_birth_date = Date.valueOf(birth_date);
+    try {
+
+      this.sql_birth_date = Date.valueOf(birth_date);
+    } catch (Exception e) {
+
+    }
   }
 
   public String getHome_address() {

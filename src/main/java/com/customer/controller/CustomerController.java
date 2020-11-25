@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.customer.bean.CustomerBean;
+import com.customer.bean.CustomerForm;
 import com.customer.service.CustomerService;
 
 
@@ -50,7 +53,7 @@ public class CustomerController {
    * ソート機能です。選択された項目で並び替えます
    */
   @RequestMapping(value = "/customer/sort", method = RequestMethod.POST)
-  public String sort(CustomerForm customerForm, Model model) {
+  public String sortForm(CustomerForm customerForm, Model model) {
     List<CustomerBean> list = customerService.sortIndex(customerForm);
     model.addAttribute("list", list);
     return "customer/index";
@@ -60,7 +63,7 @@ public class CustomerController {
    * 新規登録機能です。index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
   @RequestMapping(value = "/customer/create")
-  public String create(@ModelAttribute("customerForm") CustomerForm customerForm) {
+  public String createForm(@ModelAttribute("customerForm") CustomerForm customerForm) {
     return "customer/create";
   }
 
@@ -68,11 +71,17 @@ public class CustomerController {
    * 保存機能です。create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
    */
   @RequestMapping(value = "/customer/save-create")
-  public String saveForm(CustomerForm customerForm, Model model) {
+  public String saveForm(@ModelAttribute @Validated CustomerForm customerForm,
+      BindingResult bindingResult, Model model) {
 
-    customerService.insertNewCustomer(customerForm);
 
-    return "customer/save";
+    if (bindingResult.hasErrors()) {
+
+      return "customer/create";
+    } else {
+      customerService.insertNewCustomer(customerForm);
+      return "customer/save";
+    }
   }
 
   @RequestMapping(value = "/cusotmer/save")
@@ -85,7 +94,7 @@ public class CustomerController {
    */
 
   @RequestMapping(value = "/customer/{cust_no}", method = RequestMethod.GET)
-  public ModelAndView detail(@PathVariable Integer cust_no) {
+  public ModelAndView detailForm(@PathVariable Integer cust_no) {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("customer/detail");
 
@@ -99,7 +108,8 @@ public class CustomerController {
    */
 
   @RequestMapping(value = "/customer/delete/{cust_no}", method = RequestMethod.GET)
-  public String delete(@PathVariable Integer cust_no, RedirectAttributes attributes, Model model) {
+  public String deleteForm(@PathVariable Integer cust_no, RedirectAttributes attributes,
+      Model model) {
     customerService.deleteByNumber(cust_no);
 
     attributes.addFlashAttribute("deleteMessage", "顧客番号:" + cust_no + "を削除しました");
@@ -111,7 +121,7 @@ public class CustomerController {
    * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。 数字で検索する場合にはselectBykeybumberを使います
    */
   @RequestMapping(value = "/customer/search", method = RequestMethod.POST)
-  public String delete(CustomerForm customerForm, Model model) {
+  public String searchForm(CustomerForm customerForm, Model model) {
 
     List<CustomerBean> searchList = new ArrayList<CustomerBean>();
 
@@ -122,6 +132,7 @@ public class CustomerController {
     // searchList = customerService.searchByKeyword(customerForm);
     // }
     // 1つに統合しました
+    searchList = customerService.searchByKeyword(customerForm);
     model.addAttribute("searchList", searchList);
 
     return "customer/search";
@@ -131,14 +142,11 @@ public class CustomerController {
    * 更新画面に顧客情報が入ったデータを渡すメソッドです。
    */
   @RequestMapping(value = "/customer/edit/{cust_no}", method = RequestMethod.GET)
-  public String update(@ModelAttribute CustomerForm customerForm, @PathVariable Integer cust_no,
+  public String editForm(@ModelAttribute CustomerForm customerForm, @PathVariable Integer cust_no,
       Model model) {
 
     customerForm = customerService.customerFormByNumber(cust_no);
     model.addAttribute("customerForm", customerForm);
-
-    System.out.println(customerForm.getLast_nm());
-    System.out.println(customerForm.getFirst_nm());
 
     return "customer/edit";
   }
@@ -149,7 +157,7 @@ public class CustomerController {
   @RequestMapping(value = "/customer/save-edit", method = RequestMethod.POST)
   public String updateSave(CustomerForm customerForm) {
 
-    customerService.updatebyNumber(customerForm);
+    customerService.updateByNumber(customerForm);
 
     return ("customer/save");
   }
