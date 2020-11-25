@@ -1,4 +1,4 @@
-package com.customer.web;
+package com.customer.controller;
 
 <<<<<<< HEAD
 

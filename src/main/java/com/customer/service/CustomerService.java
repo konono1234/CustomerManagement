@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.customer.bean.CustomerBean;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -13,6 +14,9 @@ import com.customer.mapper.CustomerMapper;
  *
 =======
 import com.customer.controller.CustomerForm;
+=======
+import com.customer.bean.CustomerForm;
+>>>>>>> sort
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -36,12 +40,21 @@ public class CustomerService {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
+=======
+  // sort
+  public List<CustomerBean> sortIndex(CustomerForm customerForm) {
+    List<CustomerBean> customerList = customerMapper.sortIndexAll(customerForm);
+    return customerList;
+  }
+
+>>>>>>> sort
   // create
 >>>>>>> edit
   public void insertNewCustomer(CustomerForm customerForm) {
-    customerMapper.create(customerForm);
+    customerMapper.insertInto(customerForm);
   }
 
   // detail
@@ -72,7 +85,7 @@ public class CustomerService {
   }
 
   // update
-  public void updatebyNumber(CustomerForm customerForm) {
+  public void updateByNumber(CustomerForm customerForm) {
     customerMapper.update(customerForm);
   }
 

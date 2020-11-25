@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <title>顧客情報一覧</title>
 </head>
 <body>
@@ -39,6 +40,12 @@
 	</table>
 =======
 <title th:text="customer.index.title">customer.index.title</title>
+=======
+<link th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+
+<title th:text="#{customer.index.title}">customer.index.title</title>
+>>>>>>> sort
 </head>
 <body>
 	<div>
@@ -49,14 +56,15 @@
 		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
 	<div>
-		<a href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
+		<a class="btn btn-primary btn-sm" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">create</a></li>
 	</div>
 <<<<<<< HEAD
 >>>>>>> create
 =======
 	<div>
-		<form action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
-			<select name="key" th:field="*{key}" >
+		<form class="form-inline" action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
+			<div class= "form-group">
+			<select class="form-control" name="key" th:field="*{key}" >
 				<option value="cust_no" th:text="#{cust_no}"></option>
 				<option value="last_nm" th:text="#{last_nm}"></option>
 				<option value="first_nm" th:text="#{first_nm}"></option>
@@ -71,15 +79,55 @@
 				<option value="reg_date" th:text="#{reg_date}"></option>
 			</select>
 			<span>
-				<input type="text" name="keyward" class="form-control" th:field="*{keyword}" size="30" placeholder="キーワードを入力してください" />	
-				<input type="submit" value="検索" />
+				<input type="text" class="form-control"  name="keyward"  th:field="*{keyword}" size="30" placeholder="キーワードを入力してください" />	
+				<span>
+					<input type="submit" class="btn btn-info" value="検索" />
+				</span>
 			</span>
+			</div>
+		
 		</form>
 	</div>
+	<div class="row">
+	<div class="col-md-6">
+		<form  action="/customer/sort" th:action="@{/customer-sort}" method="post" th:object="${customerForm}">
+			<div class="input-group">
+			<select class="form-control" name="key" th:field="*{key}">
+				<option value="cust_no" th:text="#{cust_no}"></option>
+				<option value="last_nm" th:text="#{last_nm}"></option>
+				<option value="first_nm" th:text="#{first_nm}"></option>
+				<option value="last_nm_kana" th:text="#{last_nm_kana}"></option>
+				<option value="first_nm_kana" th:text="#{first_nm_kana}"></option>
+				<option value="gender_cd" th:text="#{gender_cd}"></option>
+				<option value="mail_address" th:text="#{mail_address}"></option>
+				<option value="tel_no" th:text="#{tel_no}"></option>
+				<option value="birth_date" th:text="#{birth_date}"></option>
+				<option value="home_address" th:text="#{home_address}"></option>
+				<option value="post_number" th:text="#{post_number}"></option>
+				<option value="reg_date" th:text="#{reg_date}"></option>
+			</select>
+			<select class="form-control" name="sort" th:field="*{sort}">
+				<option value="asc">昇順</option>
+				<option value="desc">降順</option>
+			</select>
+			<span class="input-group-btn">
+			<input class="btn btn-info" type="submit" value="並び替え">
+			</span>
+			</div>
+		</form>
+	</div>
+	</div>
 	
+<<<<<<< HEAD
 >>>>>>> edit
 
 	<table border="1">
+=======
+	<div class="container">
+	<div class="row">
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered">
+>>>>>>> sort
 		<tr>
 			<!-- 文字化け、??～～～??、「□」などが表示される場合、文字コードや半角全角をチェック（特に全角の改行は「□」となって化けて出てくる -->
 			
@@ -95,6 +143,7 @@
 			<th th:text="#{home_address}"></th>
 			<th th:text="#{post_number}"></th>
 			<th th:text="#{reg_date}"></th>
+			<th></th>
 		</tr>
 		
 		<!-- Controllerから渡されたBeanが入っているListを取り出し、Beanに格納された各フィールドを表示します -->
@@ -121,15 +170,18 @@
 			<td th:text="${index.post_number}">1</td>
 			<td th:text="${index.reg_date}">1</td>
 			<td>
-				<a href="/customer/edit/${index.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${index.cust_no})}">edit</a>
-				<a href="/customer/delete/${index.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${index.cust_no})}">delete</a>
+				<a class="btn btn-primary btn-sm" href="/customer/edit/${index.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${index.cust_no})}">編集</a>
+				<a class="btn btn-danger btn-sm"href="/customer/delete/${index.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${index.cust_no})}">削除</a>
 			</td>
 		</tr>
 		
 	</table>
+	</div>
+	</div>
+	</div>
 	<form role="form" id="logout" th:action="@{/logout}" method="post">
     <button type="submit">ログアウト</button>
 </form>
-		
+	
 </body>
 </html>

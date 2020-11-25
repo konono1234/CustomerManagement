@@ -11,6 +11,13 @@
 	<div>
 		<h1 th:text="#{customer.create.title}">customer.create.title</h1>
 	</div>
+	<div>
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+	</div>
 	
 	<div>
 		<form role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
@@ -19,9 +26,10 @@
 			<div>
 				<label for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
 				<div>
-					<input id="id_cust_no" type="text" name="cust_no" th:field="*{cust_no}" />
-					
+					<input id="id_cust_no" type="text" name="check_no" th:field="*{check_no}" />
+						<span th:if="${errorMessage}" th:placeholder="${check_no}"></span>
 				</div>
+				<span th:if="${#fields.hasErrors('check_no')}" th:errors="*{check_no}" style="color: red"></span>
 			</div>
 			
 			<!--  氏　-->
@@ -31,6 +39,7 @@
 					<input id="id_last_nm" type="text" name="last_nm" th:field="*{last_nm}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('last_nm')}" th:errors="*{last_nm}" style="color: red"></span>
 			</div>
 			
 			<!--  名　-->
@@ -40,6 +49,7 @@
 					<input id="id_first_nm" type="text" name="first_nm" th:field="*{first_nm}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('first_nm')}" th:errors="*{first_nm}" style="color: red"></span>
 			</div>
 			
 			<!--  氏（フリガナ）　-->
@@ -49,6 +59,7 @@
 					<input id="id_last_nm_kana" type="text" name="last_nm_kana" th:field="*{last_nm_kana}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('last_nm_kana')}" th:errors="*{last_nm_kana}" style="color: red"></span>
 			</div>
 			
 			<!--  名（フリガナ）　-->
@@ -58,6 +69,7 @@
 					<input id="id_first_nm_kana" type="text" name="first_nm_kana" th:field="*{first_nm_kana}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('first_nm_kana')}" th:errors="*{first_nm_kana}" style="color: red"></span>
 			</div>
 			
 			<!--  性別コード　-->
@@ -71,6 +83,7 @@
 					</select>
 					
 				</div>
+				<span th:if="${#fields.hasErrors('gender_cd')}" th:errors="*{gender_cd}" style="color: red"></span>
 			</div>
 			
 			<!--  メールアドレス -->
@@ -80,6 +93,7 @@
 					<input id="id_mail_address" type="text" name="mail_address" th:field="*{mail_address}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('mail_address')}" th:errors="*{mail_address}" style="color: red"></span>
 			</div>
 			
 			<!-- 電話番号 -->
@@ -89,6 +103,7 @@
 					<input id="id_tel_no" type="text" name="tel_no" th:field="*{tel_no}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('tel_no')}" th:errors="*{tel_no}" style="color: red"></span>
 			</div>
 			
 			<!--  誕生日　-->
@@ -98,6 +113,7 @@
 					<input id="id_birth_date" type="date" name="birth_date" th:field="*{birth_date}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('birth_date')}" th:errors="*{birth_date}" style="color: red"></span>
 			</div>
 			
 			<!--  住所　-->
@@ -107,6 +123,7 @@
 					<input id="id_home_address" type="text" name="home_address" th:field="*{home_address}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('home_address')}" th:errors="*{home_address}" style="color: red"></span>
 			</div>
 			
 			<!--  郵便番号-->
@@ -116,6 +133,7 @@
 					<input id="id_post_number" type="text" name="post_number" th:field="*{post_number}" />
 					
 				</div>
+				<span th:if="${#fields.hasErrors('post_number')}" th:errors="*{post_number}" style="color: red"></span>
 			</div>
 			
 			

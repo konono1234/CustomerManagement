@@ -1,4 +1,4 @@
-package com.customer.web.admin;
+package com.customer.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
