@@ -52,7 +52,7 @@ public class CustomerController {
   /*
    * ソート機能です。選択された項目で並び替えます
    */
-  @RequestMapping(value = "/customer/sort", method = RequestMethod.POST)
+  @RequestMapping(value = "/customer-sort", method = RequestMethod.POST)
   public String sortForm(CustomerForm customerForm, Model model) {
     List<CustomerBean> list = customerService.sortIndex(customerForm);
     model.addAttribute("list", list);
