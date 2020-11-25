@@ -11,6 +11,13 @@
 	<div>
 		<h1 th:text="#{customer.create.title}">customer.create.title</h1>
 	</div>
+	<div>
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+	</div>
 	
 	<div>
 		<form role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
@@ -20,7 +27,7 @@
 				<label for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
 				<div>
 					<input id="id_cust_no" type="text" name="check_no" th:field="*{check_no}" />
-					
+						<span th:if="${errorMessage}" th:placeholder="${check_no}"></span>
 				</div>
 				<span th:if="${#fields.hasErrors('check_no')}" th:errors="*{check_no}" style="color: red"></span>
 			</div>

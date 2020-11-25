@@ -19,7 +19,7 @@
 			<div>
 				<label for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
 				<div>
-					<input id="id_cust_no" type="text" name="cust_no" th:field="*{cust_no}" th:placeholder="${cust_no}" />
+					<lavel th:field="*{cust_no}" th:text="*{cust_no}" ></lavel>
 					
 				</div>
 				<span th:if="${#fields.hasErrors('cust_no')}" th:errors="*{cust_no}" style="color: red"></span>

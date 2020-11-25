@@ -63,7 +63,7 @@ public class CustomerController {
    * 新規登録機能です。index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
   @RequestMapping(value = "/customer/create")
-  public String createForm(@ModelAttribute("customerForm") CustomerForm customerForm) {
+  public String createForm(@ModelAttribute("customerForm") CustomerForm customerForm, Model model) {
     return "customer/create";
   }
 
@@ -79,8 +79,14 @@ public class CustomerController {
 
       return "customer/create";
     } else {
-      customerService.insertNewCustomer(customerForm);
-      return "customer/save";
+      try {
+        customerService.insertNewCustomer(customerForm);
+        return "customer/save";
+      } catch (Exception e) {
+
+        model.addAttribute("errorMessage", "顧客番号が重複しています。別の番号を指定してください");
+        return "customer/create";
+      }
     }
   }
 
@@ -123,6 +129,10 @@ public class CustomerController {
   @RequestMapping(value = "/customer/search", method = RequestMethod.POST)
   public String searchForm(CustomerForm customerForm, Model model) {
 
+    if (customerForm.getKeyword().equals("")) {
+      model.addAttribute("errorMessage", "キーワードを入力してください");
+      return "customer/search";
+    }
     List<CustomerBean> searchList = new ArrayList<CustomerBean>();
 
     // if (customerForm.getKey().equals("cust_no") || customerForm.getKey().equals("birth_date")
@@ -134,6 +144,14 @@ public class CustomerController {
     // 1つに統合しました
     searchList = customerService.searchByKeyword(customerForm);
     model.addAttribute("searchList", searchList);
+
+    try {
+      if (searchList.get(0) == null) {
+      }
+    } catch (Exception e) {
+      model.addAttribute("emptyMessage", "検索結果は0件です");
+      return "customer/search";
+    }
 
     return "customer/search";
   }
@@ -155,10 +173,14 @@ public class CustomerController {
    * 更新保存機能です。渡されたデータでupdateを行います
    */
   @RequestMapping(value = "/customer/save-edit", method = RequestMethod.POST)
-  public String updateSave(CustomerForm customerForm) {
+  public String updateSave(@ModelAttribute @Validated CustomerForm customerForm,
+      BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+      return ("customer/edit");
+    } else {
+      customerService.updateByNumber(customerForm);
+      return ("customer/save");
+    }
 
-    customerService.updateByNumber(customerForm);
-
-    return ("customer/save");
   }
 }
