@@ -32,14 +32,17 @@ public class CustomerForm implements Serializable {
 
   @NotNull(message = "{NotNull}")
   @Size(min = 1, max = 16, message = "{Size}")
+
   private String first_nm;
 
   @NotNull(message = "{NotNull}")
   @Size(min = 1, max = 24, message = "{Size}")
+  @Pattern(regexp = "^[ァ-タダ-ヶー]*$", message = "{0}は全角カナのみで入力してください")
   private String last_nm_kana;
 
   @NotNull(message = "{NotNull}")
   @Size(min = 1, max = 24, message = "{Size}")
+  @Pattern(regexp = "^[ァ-タダ-ヶー]*$", message = "{0}は全角カナのみで入力してください")
   private String first_nm_kana;
 
   private byte gender_cd;
