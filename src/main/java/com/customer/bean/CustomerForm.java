@@ -21,7 +21,7 @@ public class CustomerForm implements Serializable {
   @NotNull(message = "{NotNull}")
   private Integer cust_no;
 
-  @NotNull(message = "{NotNull}")
+
   @Pattern(regexp = "^[0-9]*$", message = "{0}は半角数字のみで入力してください")
   @Size(min = 1, max = 8, message = "{Size}")
   private String check_no;

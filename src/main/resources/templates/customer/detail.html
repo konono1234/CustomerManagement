@@ -2,56 +2,103 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title th:text="customer.detail.title">customer.detail.title</title>
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<title th:text="#{customer.detail.title}">customer.detail.title</title>
 </head>
 <body>
-	<div>
-		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
+<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+<div class="header">
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{customer.detail.title}" class="title"></p>
+			</div>
+		</div>
 	</div>
-	
-	<div>
-		<h1 th:text="#{customer.detail.title}">customer.detail.title</h1>
+</div>
+	<div class="container">
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p style="color: red" th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
-
-	<table border="1">
+<div class="headerNav">
+	<div class="container">
+		<div class="row headerNavBox">
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="table-responsive">
+	<table border="2" class="table table-hover" th:each="list : ${list}" th:object="${list}">
 		<tr>
-			<th　th:text="#{cust_no}"></th>
-			<th th:text="#{last_nm}"></th>
-			<th th:text="#{first_nm}"></th>
-			<th th:text="#{last_nm_kana}"></th>
-			<th th:text="#{first_nm_kana}"></th>
-			<th th:text="#{gender_cd}"></th>
-			<th th:text="#{mail_address}"></th>
-			<th th:text="#{tel_no}"></th>
-			<th th:text="#{birth_date}"></th>
-			<th th:text="#{home_address}"></th>
-			<th th:text="#{post_number}"></th>
-			<th th:text="#{reg_date}"></th>
-		</tr>
-		<tr th:each="list : ${list}" th:object="${list}">
+			<th class="table-info"　th:text="#{cust_no}"></th>
 			<td th:text="${list.cust_no}"></td>
+			<td class="table-info"></td><td></td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{last_nm}"></th>
 			<td th:text="${list.last_nm}">1</td>
+			<th class="table-info" th:text="#{first_nm}"></th>
 			<td th:text="${list.first_nm}">1</td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{last_nm_kana}"></th>
 			<td th:text="${list.last_nm_kana}">1</td>
+			<th class="table-info" th:text="#{first_nm_kana}"></th>
 			<td th:text="${list.first_nm_kana}">1</td>
-			<td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{gender_cd}"></th>
+			<td >
 				<span th:if="${list.gender_cd eq 1}" ><div>男</div></span>
 				<span th:if="${list.gender_cd eq 2}" ><div>女</div></span>
 				<span th:if="${list.gender_cd eq 3}" ><div>未定義</div></span>
 			</td>
-			<td th:text="${list.mail_address}">1</td>
-			<td th:text="${list.tel_no}">1</td>
-			<td th:text="${list.birth_date}">1</td>
-			<td th:text="${list.home_address}">1</td>
-			<td th:text="${list.post_number}">1</td>
-			<td th:text="${list.reg_date}">1</td>
-			<td>
-			<a href="/customer/edit/${list.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${list.cust_no})}">edit</a>
-		<a href="/customer/delete/${list.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${list.cust_no})}">delete</a>
-			</td>
+			<td class="table-info"></td><td></td>
 		</tr>
-		
+		<tr>
+			<th class="table-info" th:text="#{tel_no}"></th>
+			<td th:text="${list.tel_no}">1</td>
+			<th class="table-info" th:text="#{mail_address}"></th>
+			<td th:text="${list.mail_address}">1</td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{birth_date}"></th>
+			<td h:text="${list.birth_date}">1</td>
+			<td class="table-info"></td><td></td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{post_number}"></th>
+			<td th:text="${list.post_number}">1</td>
+			<th class="table-info" th:text="#{home_address}"></th>
+			<td th:text="${list.home_address}">1</td>
+		</tr>
+		<tr>
+			<th class="table-info" th:text="#{reg_date}"></th>
+			<td th:text="${list.reg_date}">1</td>
+			<td class="table-info"></td><td></td>
+		</tr>
 	</table>
-		
+<div class="headerNav">
+	<div class="container">
+		<div class="row headerNavBox">
+	<a class="btn btn-primary col-xs-6 col-sm-3 center" href="/customer/edit/${cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${cust_no})}">編集</a>
+	<a class="btn btn-primary col-xs-6 col-sm-3 center"href="/customer/delete/${cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${cust_no})}">削除</a>
+</div></div></div>
+</div>
+</div>
+</div>	
 </body>
 </html>

@@ -1,26 +1,48 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title th:text="customer.search.title">customer.search.title</title>
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<title th:text="#{customer.search.title}">customer.search.title</title>
 </head>
 <body>
-	<div>
+<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+<div class="header">
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{customer.search.title}" class="title"></p>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="container">
 		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
 		
-		<p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
-		<p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
-		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+		<p style="color: red" th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
-	<div>
-		<h1 th:text="#{customer.search.title}">customer.search.title</h1>
+<div class="headerNav">
+	<div class="container">
+		<div class="row headerNavBox">
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			
+		</div>
 	</div>
-	<div>
-		<li role="presentation"><a href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">index</a></li>
-	</div>
-	<div>
-		<form action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
-			<select name="key" th:field="*{key}" >
+</div>
+<div class="container">
+	<div class="row">
+		<form class="form-inline" action="/customer/search" th:action="@{/customer/search}" method="post" th:object="${customerForm}">
+			<div class= "form-group">
+			<select class="form-control" name="key" th:field="*{key}" >
 				<option value="cust_no" th:text="#{cust_no}"></option>
 				<option value="last_nm" th:text="#{last_nm}"></option>
 				<option value="first_nm" th:text="#{first_nm}"></option>
@@ -35,28 +57,36 @@
 				<option value="reg_date" th:text="#{reg_date}"></option>
 			</select>
 			<span>
-				<input type="text" name="keyward" class="form-control" th:field="*{keyword}" size="30" placeholder="キーワードを入力してください" />	
-				<input type="submit" value="検索" />
+				<input type="text" class="form-control"  name="keyward"  th:field="*{keyword}" size="30" placeholder="キーワードを入力してください" />	
+				<span>
+					<input type="submit" class="btn btn-info" value="検索" />
+				</span>
 			</span>
+			</div>
+		
 		</form>
 	</div>
-	
+</div>
 
-	<table border="1">
-		<tr>
+	
+	<div class="container w-100 p-3">
+	<div class="row">
+	<div class="table-responsive">
+	<table class="table table-hover table-sm">
+		<tr class="table-info">
 			<!-- 文字化け、??～～～??、「□」などが表示される場合、文字コードや半角全角をチェック（特に全角の改行は「□」となって化けて出てくる -->
 			
 			<th　th:text="#{cust_no}"></th>
 			<th th:text="#{last_nm}"></th>
 			<th th:text="#{first_nm}"></th>
-			<th th:text="#{last_nm_kana}"></th>
-			<th th:text="#{first_nm_kana}"></th>
+			<!-- <th th:text="#{last_nm_kana}"></th> -->
+			<!-- <th th:text="#{first_nm_kana}"></th> -->
 			<th th:text="#{gender_cd}"></th>
 			<th th:text="#{mail_address}"></th>
 			<th th:text="#{tel_no}"></th>
-			<th th:text="#{birth_date}"></th>
+			<!-- <th th:text="#{birth_date}"></th> -->
 			<th th:text="#{home_address}"></th>
-			<th th:text="#{post_number}"></th>
+			<!-- <th th:text="#{post_number}"></th> -->
 			<th th:text="#{reg_date}"></th>
 		</tr>
 		
@@ -68,8 +98,8 @@
 			</td>
 			<td th:text="${index.last_nm}">1</td>
 			<td th:text="${index.first_nm}">1</td>
-			<td th:text="${index.last_nm_kana}">1</td>
-			<td th:text="${index.first_nm_kana}">1</td>
+			<!-- <td th:text="${index.last_nm_kana}">1</td> -->
+			<!-- <td th:text="${index.first_nm_kana}">1</td> -->
 			
 			<!-- DB上では性別はIntegerで管理されているのでth:ifを使います -->
 			<td>
@@ -79,17 +109,17 @@
 			</td>
 			<td th:text="${index.mail_address}">1</td>
 			<td th:text="${index.tel_no}">1</td>
-			<td th:text="${index.birth_date}">1</td>
+			<!-- <td th:text="${index.birth_date}">1</td> -->
 			<td th:text="${index.home_address}">1</td>
-			<td th:text="${index.post_number}">1</td>
+			<!-- <td th:text="${index.post_number}">1</td> -->
 			<td th:text="${index.reg_date}">1</td>
-			<td>
-				<a href="/customer/edit/${index.cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${index.cust_no})}">edit</a>
-				<a href="/customer/delete/${index.cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${index.cust_no})}">delete</a>
-			</td>
+			
 		</tr>
 		
 	</table>
+	</div>
+	</div>
+	</div>
 		
 </body>
 </html>

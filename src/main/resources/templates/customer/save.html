@@ -1,44 +1,70 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title th:text="#{customer.save.title}">Save title here</title>
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<title th:text="#{customer.save.title}">customer.save.title</title>
 </head>
 <body>
+<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
 
-	<div>
-		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
+<div class="header">
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{customer.save.title}" class="title"></p>
+			</div>
+		</div>
 	</div>
-	
-	<div>
-		<h1 th:text="#{customer.save.title}">customer.save.title</h1>
+</div>
+	<div class="container">
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p style="color: red" th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
-	
+<div class="headerNav">
+	<div class="container">
+		<div class="row headerNavBox">
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			
+		</div>
+	</div>
+</div>	
+<div class="container">
 	<div class="row">
-      <div class="col-md-12">
-        <table class="table" th:object="${customerForm}">
+      <div class="col-md-12 table-rasponsive">
+        <table class="table table-hover" th:object="${customerForm}">
           <tr>
-            <th th:utext="#{cust_no}">cust_no</th>
+            <th class="table-info"　th:utext="#{cust_no}">cust_no</th>
             <td th:text="${customerForm.cust_no}"></td>
           </tr>
           <tr>
-            <th th:utext="#{last_nm}">last_nm</th>
+            <th class="table-info"　th:utext="#{last_nm}">last_nm</th>
             <td th:text="${customerForm.last_nm}"></td>
           </tr>
           <tr>
-            <th th:utext="#{first_nm}">first_nm</th>
+            <th class="table-info"　th:utext="#{first_nm}">first_nm</th>
             <td th:text="${customerForm.first_nm}"></td>
           </tr>
           <tr>
-            <th th:utext="#{last_nm_kana}">last_nm_kana</th>
+            <th class="table-info"　th:utext="#{last_nm_kana}">last_nm_kana</th>
             <td th:text="${customerForm.last_nm_kana}"></td>
           </tr>
           <tr>
-            <th th:utext="#{first_nm_kana}">first_nm_kana</th>
+            <th class="table-info"　th:utext="#{first_nm_kana}">first_nm_kana</th>
             <td th:text="${customerForm.first_nm_kana}"></td>
           </tr>
           <tr>
-            <th th:utext="#{gender_cd}">gender_cd</th>
+            <th class="table-info"　th:utext="#{gender_cd}">gender_cd</th>
             <td>
             <span th:if="${customerForm.gender_cd eq 1}" ><div>男</div></span>
 				<span th:if="${customerForm.gender_cd eq 2}" ><div>女</div></span>
@@ -46,33 +72,33 @@
             </td>
           </tr>
           <tr>
-            <th th:utext="#{mail_address}">mail_address</th>
+            <th class="table-info"　th:utext="#{mail_address}">mail_address</th>
             <td th:text="${customerForm.mail_address}"></td>
           </tr>
           <tr>
-            <th th:utext="#{tel_no}">tel_no</th>
+            <th class="table-info"　th:utext="#{tel_no}">tel_no</th>
             <td th:text="${customerForm.tel_no}"></td>
           </tr>
            <tr>
-            <th th:utext="#{birth_date}">birth_date</th>
+            <th class="table-info"　th:utext="#{birth_date}">birth_date</th>
             <td th:text="${customerForm.birth_date}"></td>
           </tr>
           <tr>
-            <th th:utext="#{home_address}">home_address</th>
+            <th class="table-info"　th:utext="#{home_address}">home_address</th>
             <td th:text="${customerForm.home_address}"></td>
           </tr>
           <tr>
-            <th th:utext="#{post_number}">post_number</th>
+            <th class="table-info"　th:utext="#{post_number}">post_number</th>
             <td th:text="${customerForm.post_number}"></td>
           </tr>
           <tr>
-            <th th:utext="#{reg_date}">reg_date</th>
+            <th class="table-info"　th:utext="#{reg_date}">reg_date</th>
             <td th:text="${customerForm.reg_date}"></td>
           </tr>
         </table>
       </div>
     </div>
-
+</div>
 		
 
 </body>
