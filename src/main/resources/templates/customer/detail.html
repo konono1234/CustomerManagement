@@ -6,6 +6,15 @@
 <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
 <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
 <title th:text="#{customer.detail.title}">customer.detail.title</title>
+<script>
+var btn = document.getElementById('btn');
+
+btn.addEventListener('click', function() {
+ 
+    window.confirm('削除します');
+ 
+})
+</script>
 </head>
 <body>
 <a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
@@ -95,7 +104,23 @@
 	<div class="container">
 		<div class="row headerNavBox">
 	<a class="btn btn-primary col-xs-6 col-sm-3 center" href="/customer/edit/${cust_no}" th:href="@{/customer/edit/{cust_no}(cust_no=${cust_no})}">編集</a>
-	<a class="btn btn-primary col-xs-6 col-sm-3 center"href="/customer/delete/${cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${cust_no})}">削除</a>
+	<!-- <a  class="btn btn-primary col-xs-6 col-sm-3 center"href="/customer/delete/${cust_no}" th:href="@{/customer/delete/{cust_no}(cust_no=${cust_no})}" >削除</a> -->
+	<form class="col-xs-6 col-sm-3 center" name="test">
+	<input class="btn btn-primary  center"　type="button" value="削除" onClick="kakunin()">
+	</form>
+	
+	<!-- ThymeleafとJavaScriptを組み合わせるには以下の書き方をするそうです　削除する際にポップアップを表示させたかった -->
+	
+	<script th:inline="javascript">
+	function kakunin(){
+		/*<![CDATA[*/
+		ret = confirm("削除します。よろしいですか？");
+		  if (ret == true){
+		    location.href = /*[[ @{/customer/delete/{cust_no}(cust_no=${cust_no})} ]]*/ "ここはthymeleafで置き換わります";
+		  }
+		}
+	/*]]>*/
+	</script>
 </div></div></div>
 </div>
 </div>

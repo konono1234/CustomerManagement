@@ -16,7 +16,7 @@ import com.customer.bean.CustomerForm;
 @Mapper
 public interface CustomerMapper {
 
-  @Select("SELECT * FROM m_customer")
+  @Select("SELECT * FROM m_customer order by cust_no")
   public List<CustomerBean> selectIndexAll();
 
   // sort用。データベースでできることはなるべくDB上でやった方がいいと言われている？

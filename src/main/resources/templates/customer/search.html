@@ -5,7 +5,13 @@
 <link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
 <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
 <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.tablesorter.min.js}"></script>
 <title th:text="#{customer.search.title}">customer.search.title</title>
+<script>
+$(document).ready(function(){
+	$('#search-table').tablesorter();
+});
+</script>
 </head>
 <body>
 <a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
@@ -72,7 +78,8 @@
 	<div class="container w-100 p-3">
 	<div class="row">
 	<div class="table-responsive">
-	<table class="table table-hover table-sm">
+	<table class="table table-hover table-sm" id="search-table">
+		<thead>
 		<tr class="table-info">
 			<!-- 文字化け、??～～～??、「□」などが表示される場合、文字コードや半角全角をチェック（特に全角の改行は「□」となって化けて出てくる -->
 			
@@ -89,9 +96,9 @@
 			<!-- <th th:text="#{post_number}"></th> -->
 			<th th:text="#{reg_date}"></th>
 		</tr>
-		
+		</thead>
 		<!-- Controllerから渡されたBeanが入っているListを取り出し、Beanに格納された各フィールドを表示します -->
-		
+		<tbody>
 		<tr th:each="index : ${searchList}" th:object="${searchList}">
 			<td>
 				<a href="/customer/${index.cust_no}" th:href="@{/customer/{cust_no}(cust_no=${index.cust_no})}" th:text="${index.cust_no}">1</a>
@@ -115,7 +122,7 @@
 			<td th:text="${index.reg_date}">1</td>
 			
 		</tr>
-		
+		</tbody>
 	</table>
 	</div>
 	</div>
