@@ -6,19 +6,28 @@
 <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
 <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
 <title th:text="#{customer.detail.title}">customer.detail.title</title>
-<script>
-var btn = document.getElementById('btn');
-
-btn.addEventListener('click', function() {
- 
-    window.confirm('削除します');
- 
-})
-</script>
 </head>
 <body>
-<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
-<div class="header">
+<div class="sticky-top" style="background-color: white">
+	
+	<div class="headerNav">
+		<div class="container">
+			<div class="row headerNavBox">
+			<a class="pull-left" th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="header">
+	</div>
+</div>
+<div>
 	<div class="container ">
 		<div class="row">
 			<div class="col-xs-12 title">
@@ -34,19 +43,8 @@ btn.addEventListener('click', function() {
 		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
 		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
-<div class="headerNav">
-	<div class="container">
-		<div class="row headerNavBox">
-			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
-					index
-			</a>
-			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
-					create
-			</a>
-			
-		</div>
-	</div>
-</div>
+
+<br>
 <div class="container">
 <div class="row">
 <div class="table-responsive">

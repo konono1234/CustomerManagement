@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -55,7 +56,7 @@ public class CustomerForm implements Serializable {
   @Size(min = 1, max = 13, message = "{Size}")
   private String tel_no;
 
-  @NotNull(message = "{NotNull}")
+  @NotBlank(message = "{NotBlank}")
   private String birth_date;
 
   private Date sql_birth_date;

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .header{
-	border-top:3px solid #000;
+	border-top:1.5px solid #000;
 }
 .center{
 	display: block;
@@ -15,10 +15,10 @@
 }
 .headerNavBtn{
 	text-align:center;
-	height:3em;
-	line-height:3em;
+	height:2.5em;
+	line-height:2.5em;
 	color:#5F5F5F;
-	font-size:16px;
+	font-size:14px;
 }
 .headerNavBtn:hover{
 	background:#EEE;
@@ -26,6 +26,10 @@
 .right{
 	display: block;
 	margin: 0 0 0 auto;
+}
+.left{
+	display: block;
+	margin-right: auto;
 }
 .tablesorter-headerUnSorted{
 	background-image: url('images/sort.gif');

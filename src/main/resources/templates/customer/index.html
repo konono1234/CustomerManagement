@@ -15,8 +15,26 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
-<div class="header">
+<div class="sticky-top" style="background-color: white">
+	
+	<div class="headerNav">
+		<div class="container">
+			<div class="row headerNavBox">
+			<a class="pull-left" th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="header">
+	</div>
+</div>
+<div>
 	<div class="container ">
 		<div class="row">
 			<div class="col-xs-12 title">
@@ -32,19 +50,7 @@ $(document).ready(function(){
 		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
 		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
 	</div>
-<div class="headerNav">
-	<div class="container">
-		<div class="row headerNavBox">
-			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
-					index
-			</a>
-			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
-					create
-			</a>
-			
-		</div>
-	</div>
-</div>
+
 <br>
 <div class="container">
 	<div class="row">
@@ -135,11 +141,13 @@ $(document).ready(function(){
 	</div>
 	</div>
 	</div>
+
 <div class="container ">
 	<form role="form" id="logout" th:action="@{/logout}" method="post">
     <button type="submit" class="btn btn-secondary right">ログアウト</button>
 </form>
 </div>
+<!--	並び替え没コード
 	<div class="container">
 	<div class="row">
 	<div>
@@ -170,6 +178,6 @@ $(document).ready(function(){
 		</form>
 	</div>
 	</div>
-</div>
+</div>  -->
 </body>
 </html>
