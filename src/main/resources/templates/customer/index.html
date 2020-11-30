@@ -20,7 +20,7 @@ $(document).ready(function(){
 	<div class="headerNav">
 		<div class="container">
 			<div class="row headerNavBox">
-			<a class="pull-left" th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+			<a class="pull-left" href="http://www.comsize.co.jp"><img th:src="@{/images/comsize.png}" width= 120px></a>
 			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
 					index
 			</a>
@@ -146,6 +146,10 @@ $(document).ready(function(){
 	<form role="form" id="logout" th:action="@{/logout}" method="post">
     <button type="submit" class="btn btn-secondary right">ログアウト</button>
 </form>
+</div>
+
+<div class="container">
+	<a th:href="@{csv/index.csv}" class="btn btn-primary">出力</a>
 </div>
 <!--	並び替え没コード
 	<div class="container">

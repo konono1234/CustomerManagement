@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.customer.bean.CustomerBean;
 import com.customer.bean.CustomerForm;
+import com.customer.csv.CsvBean;
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -22,6 +23,12 @@ public class CustomerService {
   // index
   public List<CustomerBean> selectIndex() {
     List<CustomerBean> customerList = customerMapper.selectIndexAll();
+    return customerList;
+  }
+
+  // csv index
+  public List<CsvBean> selectIndexCsv() {
+    List<CsvBean> customerList = customerMapper.selectIndexCsvAll();
     return customerList;
   }
 
