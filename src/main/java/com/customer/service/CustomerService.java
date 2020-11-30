@@ -41,6 +41,7 @@ public class CustomerService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -53,6 +54,12 @@ public class CustomerService {
 >>>>>>> sort
   // create
 >>>>>>> edit
+=======
+=======
+=======
+  // create
+>>>>>>> create
+>>>>>>> detail
   public void insertNewCustomer(CustomerForm customerForm) {
     customerMapper.insertInto(customerForm);
   }
