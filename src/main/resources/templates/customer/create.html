@@ -5,6 +5,8 @@
 <link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
 <link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
 <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/js/yubinbango.js}" charset="UTF-8"></script>
+
 <title th:text="#{customer.create.title}">customer.create.title</title>
 </head>
 <body>
@@ -50,7 +52,7 @@
 <div class="container">
 	<div class="row ">
 	<div class="col-xm-12 center">
-		<form role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
+		<form class="h-adr" role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
 		<table>
 			<!-- 顧客番号 -->
 		<tr>
@@ -173,11 +175,13 @@
 		<th>
 			<div class="form-group">
 				<label class="control-label" for="id_post_number" th:text="#{post_number}"></label>
+				<span class="p-country-name" style="display:none;">Japan</span>
 				<div>
-					<input class="form-control"  id="id_post_number" type="text" name="post_number" th:field="*{post_number}" />
+					<input class="form-control p-postal-code"  id="id_post_number" type="text" name="post_number"  th:field="*{post_number}"  />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('post_number')}" th:errors="*{post_number}" style="color: red"></span>
+				
 			</div>
 		</th>
 		
@@ -187,7 +191,7 @@
 			<div class="form-group">
 				<label class="control-label" for="id_home_address" th:text="#{home_address}"></label>
 				<div>
-					<input class="form-control"  id="id_home_address" type="text" name="home_address" th:field="*{home_address}" />
+					<input class="form-control p-region p-locality p-street-address p-extended-address"  id="id_home_address" type="text" size="30"name="home_address" th:field="*{home_address}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('home_address')}" th:errors="*{home_address}" style="color: red"></span>
