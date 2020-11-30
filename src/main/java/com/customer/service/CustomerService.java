@@ -16,7 +16,11 @@ import com.customer.mapper.CustomerMapper;
 import com.customer.controller.CustomerForm;
 =======
 import com.customer.bean.CustomerForm;
+<<<<<<< HEAD
 >>>>>>> sort
+=======
+import com.customer.csv.CsvBean;
+>>>>>>> design1
 import com.customer.mapper.CustomerMapper;
 
 /*
@@ -42,9 +46,18 @@ public class CustomerService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
+=======
+  // csv index
+  public List<CsvBean> selectIndexCsv() {
+    List<CsvBean> customerList = customerMapper.selectIndexCsvAll();
+    return customerList;
+  }
+
+>>>>>>> design1
   // sort
   public List<CustomerBean> sortIndex(CustomerForm customerForm) {
     List<CustomerBean> customerList = customerMapper.sortIndexAll(customerForm);

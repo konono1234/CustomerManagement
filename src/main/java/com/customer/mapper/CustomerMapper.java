@@ -19,6 +19,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import com.customer.bean.CustomerBean;
 import com.customer.bean.CustomerForm;
+import com.customer.csv.CsvBean;
 
 /*
 <<<<<<< HEAD
@@ -33,22 +34,33 @@ import com.customer.bean.CustomerForm;
 @Mapper
 public interface CustomerMapper {
 
+<<<<<<< HEAD
   @Select("SELECT * FROM m_customer")
 <<<<<<< HEAD
   public ArrayList<CustomerBean> selectIndexAll();
 =======
+=======
+  @Select("SELECT * FROM m_customer order by cust_no")
+>>>>>>> design1
   public List<CustomerBean> selectIndexAll();
+
+  @Select("select * from m_customer order by cust_no")
+  public List<CsvBean> selectIndexCsvAll();
 
   // sort用。データベースでできることはなるべくDB上でやった方がいいと言われている？
   @Select("select * from m_customer order by ${key} ${sort}")
   public List<CustomerBean> sortIndexAll(CustomerForm customerForm);
 
   // 誕生日と更新日はCustomerFormでSQLのDATE型に変換しています
+<<<<<<< HEAD
   @Insert("INSERT INTO m_customer (cust_no, last_nm, first_nm, last_nm_kana, first_nm_kana, gender_cd, mail_address, tel_no, birth_date, home_address, post_number, reg_date)  values (#{cust_no}, #{last_nm}, #{first_nm}, #{last_nm_kana}, #{first_nm_kana}, #{gender_cd}, #{mail_address}, #{tel_no}, #{sql_birth_date}, #{home_address}, #{post_number}, #{sql_reg_date})")
 <<<<<<< HEAD
   public void create(CustomerForm customerForm);
 >>>>>>> create
 =======
+=======
+  @Insert("INSERT INTO m_customer (cust_no, last_nm, first_nm, last_nm_kana, first_nm_kana, gender_cd, mail_address, tel_no, birth_date, home_address, post_number, reg_date)  values (#{cust_no},#{last_nm}, #{first_nm}, #{last_nm_kana}, #{first_nm_kana}, #{gender_cd}, #{mail_address}, #{tel_no}, #{sql_birth_date}, #{home_address}, #{post_number}, #{sql_reg_date})")
+>>>>>>> design1
   public void insertInto(CustomerForm customerForm);
 >>>>>>> sort
 
@@ -67,7 +79,8 @@ public interface CustomerMapper {
   // '%')")
   // public List<CustomerBean> searchByNumber(CustomerForm customerForm);
 
-  @Select("SELECT * FROM m_customer where CAST(${key} AS TEXT) like CONCAT('%', '${keyword}', '%')")
+  @Select("SELECT * FROM m_customer where CAST(${key} AS TEXT) like CONCAT('%', '${keyword}', '%') order by cust_no")
+
   public List<CustomerBean> searchByWord(CustomerForm customerForm);
 
   @Update("update m_customer set last_nm = #{last_nm}, first_nm = #{first_nm}, last_nm_kana = #{last_nm_kana}, first_nm_kana = #{first_nm_kana}, gender_cd = #{gender_cd}, mail_address = #{mail_address}, tel_no = #{tel_no}, birth_date = #{sql_birth_date} , home_address = #{home_address}, post_number = #{post_number} where cust_no = #{cust_no}")

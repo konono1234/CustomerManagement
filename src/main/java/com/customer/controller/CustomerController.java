@@ -151,6 +151,15 @@ public class CustomerController {
     return "redirect:/customer";
   }
 
+  @RequestMapping(value = "/customer/delete", method = RequestMethod.GET)
+  public String deleteForm(CustomerBean customerBean, RedirectAttributes attributes, Model model) {
+    customerService.deleteByNumber(customerBean.getCust_no());
+
+    attributes.addFlashAttribute("deleteMessage", "顧客番号:" + customerBean.getCust_no() + "を削除しました");
+
+    return "redirect:/customer";
+  }
+
   /*
    * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。 数字で検索する場合にはselectBykeybumberを使います
    */

@@ -1,82 +1,124 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title th:text="#{customer.create.title}">Create title here</title>
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/js/yubinbango.js}" charset="UTF-8"></script>
+
+<title th:text="#{customer.create.title}">customer.create.title</title>
 </head>
 <body>
-	<div>
-		<a th:href="@{/customer}" th:text="#{customer.index.title}" />
-	</div>
-	<div>
-		<h1 th:text="#{customer.create.title}">customer.create.title</h1>
-	</div>
-	<div>
-		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
-		
-		<p th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
-		<p th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
-		<p th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+<div class="sticky-top" style="background-color: white">
+	
+	<div class="headerNav">
+		<div class="container">
+			<div class="row headerNavBox">
+			<a class="pull-left" href="http://www.comsize.co.jp"><img th:src="@{/images/comsize.png}" width= 120px></a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer" th:href="@{/customer}" th:text="#{customer.index.title}">
+					index
+			</a>
+			<a style="color: #3366FF"class="col-xs-6 col-sm-3 headerNavBtn center" href="/customer/create" th:href="@{/customer/create}" th:text="#{customer.create.title}">
+					create
+			</a>
+			</div>
+		</div>
 	</div>
 	
-	<div>
-		<form role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
-			
+	<div class="header">
+	</div>
+</div>
+<div>
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{customer.create.title}" class="title"></p>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="container">
+		<div class="col-xm-12 center">
+		<!-- 削除・空・エラーメッセージを渡されたら表示します(RedirectAttributeで渡される) -->
+		
+		<p style="color: red" th:if="${errorMessage}" th:text="${errorMessage}">error message</p>
+		<p style="color: red" th:if="${deleteMessage}" th:text="${deleteMessage}">delete message</p>
+		<p style="color: red" th:if="${emptyMessage}" th:text="${emptyMessage}">empty Message</p>
+		</div>
+	</div>
+
+<br>
+<div class="container">
+	<div class="row ">
+	<div class="col-xm-12 center">
+		<form class="h-adr" role="form" action="/customer/save-create" th:action="@{/customer/save-create}" th:object="${customerForm}" method="post">
+		<table>
 			<!-- 顧客番号 -->
-			<div>
-				<label for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
-				<div>
-					<input id="id_cust_no" type="text" name="check_no" th:field="*{check_no}" />
-						<span th:if="${errorMessage}" th:placeholder="${check_no}"></span>
-				</div>
+		<tr>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_cust_no" th:text="#{cust_no}" >cust_no</label>
+				<input class="form-control" id="id_cust_no" type="text" name="check_no" th:field="*{check_no}" />
 				<span th:if="${#fields.hasErrors('check_no')}" th:errors="*{check_no}" style="color: red"></span>
 			</div>
-			
+		</th>
+		</tr>
+		<tr>
+		<th>
 			<!--  氏　-->
-			<div>
-				<label for="id_last_nm" th:text="#{last_nm}">last_nm</label>
-				<div>
-					<input id="id_last_nm" type="text" name="last_nm" th:field="*{last_nm}" />
-					
-				</div>
+			<div class="form-group">
+				<label class="control-label" for="id_last_nm" th:text="#{last_nm}">last_nm</label>
+				<span>
+				<input class="form-control"id="id_last_nm" type="text" name="last_nm" th:field="*{last_nm}" />
 				<span th:if="${#fields.hasErrors('last_nm')}" th:errors="*{last_nm}" style="color: red"></span>
+				</span>
 			</div>
-			
+		</th>
 			<!--  名　-->
-			<div>
-				<label for="id_first_nm" th:text="#{first_nm}">first_nm</label>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_first_nm" th:text="#{first_nm}">first_nm</label>
 				<div>
-					<input id="id_first_nm" type="text" name="first_nm" th:field="*{first_nm}" />
+					<input class="form-control"  id="id_first_nm" type="text" name="first_nm" th:field="*{first_nm}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('first_nm')}" th:errors="*{first_nm}" style="color: red"></span>
 			</div>
-			
+		</th>
+		</tr>
+		<tr>
+		<th>
 			<!--  氏（フリガナ）　-->
-			<div>
-				<label for="id_last_nm_kana" th:text="#{last_nm_kana}"></label>
+			<div class="form-group">
+				<label class="control-label" for="id_last_nm_kana" th:text="#{last_nm_kana}"></label>
 				<div>
-					<input id="id_last_nm_kana" type="text" name="last_nm_kana" th:field="*{last_nm_kana}" />
+					<input class="form-control"  id="id_last_nm_kana" type="text" name="last_nm_kana" th:field="*{last_nm_kana}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('last_nm_kana')}" th:errors="*{last_nm_kana}" style="color: red"></span>
 			</div>
-			
+		</th>
 			<!--  名（フリガナ）　-->
-			<div>
-				<label for="id_first_nm_kana" th:text="#{first_nm_kana}"></label>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_first_nm_kana" th:text="#{first_nm_kana}"></label>
 				<div>
-					<input id="id_first_nm_kana" type="text" name="first_nm_kana" th:field="*{first_nm_kana}" />
+					<input class="form-control"  id="id_first_nm_kana" type="text" name="first_nm_kana" th:field="*{first_nm_kana}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('first_nm_kana')}" th:errors="*{first_nm_kana}" style="color: red"></span>
 			</div>
-			
+		</th>
+		
+		</tr>	
 			<!--  性別コード　-->
-			<div>
-				<label for="id_gender_cd" th:text="#{gender_cd}"></label>
+		<tr>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_gender_cd" th:text="#{gender_cd}"></label>
 				<div>
-					<select id="id_gender_cd"  name="gender_cd" th:field="*{gender_cd}" >
+					<select class="form-control"  id="id_gender_cd"  name="gender_cd" th:field="*{gender_cd}" >
 						<option value="1">男</option>
 						<option value="2">女</option>
 						<option value="3">どちらでも無い</option>
@@ -85,64 +127,85 @@
 				</div>
 				<span th:if="${#fields.hasErrors('gender_cd')}" th:errors="*{gender_cd}" style="color: red"></span>
 			</div>
-			
-			<!--  メールアドレス -->
-			<div>
-				<label for="id_mail_address" th:text="#{mail_address}"></label>
-				<div>
-					<input id="id_mail_address" type="text" name="mail_address" th:field="*{mail_address}" />
-					
-				</div>
-				<span th:if="${#fields.hasErrors('mail_address')}" th:errors="*{mail_address}" style="color: red"></span>
-			</div>
-			
+		</th>
+		</tr>	
+		
 			<!-- 電話番号 -->
-			<div>
-				<label for="id_tel_no" th:text="#{tel_no}"></label>
+		<tr>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_tel_no" th:text="#{tel_no}"></label>
 				<div>
-					<input id="id_tel_no" type="text" name="tel_no" th:field="*{tel_no}" />
+					<input class="form-control"  id="id_tel_no" type="text" name="tel_no" th:field="*{tel_no}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('tel_no')}" th:errors="*{tel_no}" style="color: red"></span>
 			</div>
-			
-			<!--  誕生日　-->
-			<div>
-				<label for="id_birth_date" th:text="#{birth_date}"></label>
+		</th>
+		
+			<!--  メールアドレス -->
+		<th>
+
+			<div class="form-group">
+				<label class="control-label" for="id_mail_address" th:text="#{mail_address}"></label>
 				<div>
-					<input id="id_birth_date" type="date" name="birth_date" th:field="*{birth_date}" />
+					<input class="form-control"  id="id_mail_address" type="text" name="mail_address" th:field="*{mail_address}" />
+					
+				</div>
+				<span th:if="${#fields.hasErrors('mail_address')}" th:errors="*{mail_address}" style="color: red"></span>
+			</div>
+		</th>
+		</tr>
+			<!--  誕生日　-->
+		<tr>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_birth_date" th:text="#{birth_date}"></label>
+				<div>
+					<input class="form-control"  id="id_birth_date" type="date" name="birth_date" th:field="*{birth_date}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('birth_date')}" th:errors="*{birth_date}" style="color: red"></span>
 			</div>
+		</th>
+		</tr>	
 			
-			<!--  住所　-->
-			<div>
-				<label for="id_home_address" th:text="#{home_address}"></label>
+			<!--  郵便番号-->
+		<tr>
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_post_number" th:text="#{post_number}"></label>
+				<span class="p-country-name" style="display:none;">Japan</span>
 				<div>
-					<input id="id_home_address" type="text" name="home_address" th:field="*{home_address}" />
+					<input class="form-control p-postal-code"  id="id_post_number" type="text" name="post_number"  th:field="*{post_number}"  />
+					
+				</div>
+				<span th:if="${#fields.hasErrors('post_number')}" th:errors="*{post_number}" style="color: red"></span>
+				
+			</div>
+		</th>
+		
+		<!--  住所　-->
+
+		<th>
+			<div class="form-group">
+				<label class="control-label" for="id_home_address" th:text="#{home_address}"></label>
+				<div>
+					<input class="form-control p-region p-locality p-street-address p-extended-address"  id="id_home_address" type="text" size="30"name="home_address" th:field="*{home_address}" />
 					
 				</div>
 				<span th:if="${#fields.hasErrors('home_address')}" th:errors="*{home_address}" style="color: red"></span>
 			</div>
-			
-			<!--  郵便番号-->
+		</th>
+		</tr>	
+		</table>
 			<div>
-				<label for="id_post_number" th:text="#{post_number}"></label>
-				<div>
-					<input id="id_post_number" type="text" name="post_number" th:field="*{post_number}" />
-					
-				</div>
-				<span th:if="${#fields.hasErrors('post_number')}" th:errors="*{post_number}" style="color: red"></span>
-			</div>
-			
-			
-			<div>
-				<input type="submit" value="save" />
+				<input class="btn btn-primary right" type="submit" value="登録" />
 			</div>
 		</form>
-		
+		</div>
 	</div>
+</div>
 
 </body>
 </html>

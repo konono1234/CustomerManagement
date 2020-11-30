@@ -1,10 +1,14 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
-<title>ログイン画面</title>
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<title th:text="#{customer.index.title}">customer.index.title</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 <<<<<<< HEAD
   <div >
@@ -12,13 +16,28 @@
       <h1 th:utext="#{login.login.title}">login.login.title</h1>
       <p>テスト用id = admin password = 1234</p>
 =======
+=======
+<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+ <div class="header">
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{login.login.title}" class="title"></p>
+			</div>
+		</div>
+	</div>
+ <div class="contaner">
+ <div class="row">
+ <div class="col-xm-12 center">
+>>>>>>> design1
   <div th:if="${param.logout}">
-	  <p th:text="#{logout.done}"/>
+	  <p style="color: red"th:text="#{logout.done}"/>
   </div>
   
   <div th:if="${param.error}">
-  	<p th:text="#{login.failure}"/>
+  	<p style="color: red"th:text="#{login.failure}"/>
   </div>
+<<<<<<< HEAD
  
   <div>
     <div >
@@ -30,6 +49,12 @@
 
     <div >
       <div >
+=======
+</div></div></div>
+  <div class="container">
+   <div class="row">
+      <div class="col-xm-12 center">
+>>>>>>> design1
 
 <<<<<<< HEAD
         <form  role="form" th:action="@{/login}" method="post">
@@ -49,39 +74,47 @@
               <input id="password"  type="password" name="password" value="1234" />
 =======
         <form  role="form" th:action="@{/login}"  method="post">
-        
+        <table>
           <!-- username -->
-          <div >
-            <label for="username" th:utext="#{login.username}"></label>
+        
+          <div class="form-group">
+            <label class="control-label" for="username" th:utext="#{login.username}"></label>
             <div >
-              <input id="username"  type="text" name="username" value="" required/>
+              <input class="form-control" id="username"  type="text" name="username" value="" required/>
             </div>
           </div>
           
           <!-- password -->
-          <div >
-            <label for="password" th:text="#{login.password}"></label>
+          <div class="form-group">
+            <label class="control-label" for="password" th:text="#{login.password}"></label>
             <div>
+<<<<<<< HEAD
               <input id="password"  type="password" name="password" value="" required/>
 >>>>>>> create
+=======
+              <input class="form-control" id="password"  type="password" name="password" value="" required/>
+>>>>>>> design1
             </div>
           </div>
-
+		</table>
           <div>
+<<<<<<< HEAD
 <<<<<<< HEAD
             <input  type="submit" >送信する
 =======
             <input  type="submit" th:value="#{login.submit}"></input>
 >>>>>>> create
+=======
+            <input  class="btn btn-primary" type="submit" th:value="#{login.submit}"></input>
+>>>>>>> design1
           </div>
         </form>
+        
 
       </div>
     </div>
-
-    <div></div>
   </div>
-
+</div>
   <div></div>
 </body>
 

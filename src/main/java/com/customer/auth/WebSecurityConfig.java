@@ -48,6 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 =======
   public void configure(WebSecurity web) throws Exception {
     web.ignoring().antMatchers("/webjars/**");
+    web.ignoring().antMatchers("/css/**");
+    web.ignoring().antMatchers("/images/**");
   }
 
 >>>>>>> sort
