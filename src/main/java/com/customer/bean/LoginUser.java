@@ -8,7 +8,6 @@ public class LoginUser {
 
   private String user_id;
 
-
   private String password;
 
 

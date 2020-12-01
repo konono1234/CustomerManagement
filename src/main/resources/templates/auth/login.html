@@ -30,6 +30,9 @@
   	<p style="color: red"th:text="#{login.failure}"/>
   </div>
   
+  <div th:if="${saveMessage}">
+  	<p style="color: red" th:text="#{login.save}" />
+  </div>
   
  </div>
 </div>

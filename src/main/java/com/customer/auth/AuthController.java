@@ -93,10 +93,9 @@ public class AuthController {
   @RequestMapping(value = "/login-edit-save")
   public String loginEditSave(Model model, LoginUser loginUser) {
     model.addAttribute("saveMessage", true);
-    System.out.print(loginUser.getUser_id());
-    System.out.print(loginUser.getPassword());
+
     userService.updateUserByUserid(loginUser);
-    return "redirect:/login";
+    return "auth/login";
   }
 
   @RequestMapping(value = "/login-create-save")
@@ -104,7 +103,7 @@ public class AuthController {
     model.addAttribute("saveMessage", true);
     try {
       userService.insertUserInfo(loginUser);
-      return "redirect:/login";
+      return "auth/login";
     } catch (Exception e) {
       model.addAttribute("errorMessage", true);
       model.addAttribute("createUser", true);
