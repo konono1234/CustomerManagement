@@ -4,29 +4,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.customer.bean.CustomerBean;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import com.customer.mapper.CustomerMapper;
-
-/*
- * Mapperクラスを起動するサービスクラスです。
- *
- *
-=======
-import com.customer.controller.CustomerForm;
-=======
 import com.customer.bean.CustomerForm;
-<<<<<<< HEAD
->>>>>>> sort
-=======
 import com.customer.csv.CsvBean;
->>>>>>> design1
 import com.customer.mapper.CustomerMapper;
 
 /*
  * Mapperクラスを起動するサービスクラスです。 取り出したデータをCustomerBeanクラスに格納します
- * 
->>>>>>> create
  */
 
 @Service
@@ -42,37 +25,21 @@ public class CustomerService {
     return customerList;
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-=======
-=======
+
   // csv index
   public List<CsvBean> selectIndexCsv() {
     List<CsvBean> customerList = customerMapper.selectIndexCsvAll();
     return customerList;
   }
 
->>>>>>> design1
   // sort
   public List<CustomerBean> sortIndex(CustomerForm customerForm) {
     List<CustomerBean> customerList = customerMapper.sortIndexAll(customerForm);
     return customerList;
   }
 
->>>>>>> sort
   // create
->>>>>>> edit
-=======
-=======
-=======
-  // create
->>>>>>> create
->>>>>>> detail
+
   public void insertNewCustomer(CustomerForm customerForm) {
     customerMapper.insertInto(customerForm);
   }
@@ -111,11 +78,9 @@ public class CustomerService {
 
   // createCustomerForm
   public CustomerForm customerFormByNumber(Integer cust_no) {
-
     return customerMapper.customerFormCreate(cust_no);
   }
 
 
 
->>>>>>> create
 }

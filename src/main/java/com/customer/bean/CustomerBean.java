@@ -6,10 +6,6 @@ package com.customer.bean;
 
 public class CustomerBean {
 
-<<<<<<< HEAD
-
-=======
->>>>>>> create
   private int cust_no;
 
   private String last_nm;

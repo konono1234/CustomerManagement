@@ -1,34 +1,14 @@
 package com.customer.controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> create
-=======
 import java.util.ArrayList;
->>>>>>> edit
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
->>>>>>> sort
 import org.springframework.web.bind.annotation.ModelAttribute;
-<<<<<<< HEAD
->>>>>>> create
-=======
 import org.springframework.web.bind.annotation.PathVariable;
-<<<<<<< HEAD
->>>>>>> edit
-=======
->>>>>>> create
->>>>>>> detail
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,16 +19,7 @@ import com.customer.service.CustomerService;
 
 
 /*
-<<<<<<< HEAD
- * Beanにデータを受け渡したりServiceを起動するコントローラークラスです
-<<<<<<< HEAD
- *
-=======
-=======
  * Serviceを起動したりViewにデータを渡すコントローラークラスです
->>>>>>> edit
- * 
->>>>>>> create
  */
 
 @Controller
@@ -62,8 +33,8 @@ public class CustomerController {
   CustomerService customerService;
 
   /*
-   * 「/customer」を拾ってlistにサービスから渡されたデータを格納してindex.htmlに飛ばす。
-   * cusomer/indexは、customerフォルダのindex.htmlというこｐと
+   * 一覧表示機能です 「/customer」を拾ってlistにサービスから渡されたデータを格納してindex.htmlに飛ばす。
+   * cusomer/indexは、customerフォルダのindex.htmlということ
    */
 
 
@@ -78,15 +49,13 @@ public class CustomerController {
   }
 
   /*
-   * ソート機能です。選択された項目で並び替えます
+   * ソート機能です。選択された項目で並び替えます。没になり、ソートはJQueryで行います
+   * 
+   * @RequestMapping(value = "/customer-sort", method = RequestMethod.POST) public String
+   * sortForm(CustomerForm customerForm, Model model) { List<CustomerBean> list =
+   * customerService.sortIndex(customerForm); model.addAttribute("list", list); return
+   * "customer/index"; }
    */
-  @RequestMapping(value = "/customer-sort", method = RequestMethod.POST)
-  public String sortForm(CustomerForm customerForm, Model model) {
-    List<CustomerBean> list = customerService.sortIndex(customerForm);
-    model.addAttribute("list", list);
-    return "customer/index";
-  }
-
   /*
    * 新規登録機能です。index.htmlからcreate.htmlにFormで入力されたデータを格納予定のインスタンスを渡す（各フィールドは空っぽ）
    */
@@ -96,7 +65,7 @@ public class CustomerController {
   }
 
   /*
-   * 保存機能です。create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします
+   * 保存機能です。create.htmlから渡されるデータが格納されたインスタンスをDBにinsertします 入力エラーやInsert失敗時にエラーメッセージを返します
    */
   @RequestMapping(value = "/customer/save-create")
   public String saveForm(@ModelAttribute @Validated CustomerForm customerForm,
@@ -118,6 +87,9 @@ public class CustomerController {
     }
   }
 
+  /*
+   * 保存完了画面です。データが入ったCustomerFormを受け取り、そのまま返します
+   */
   @RequestMapping(value = "/cusotmer/save")
   public String save(CustomerForm customerForm, Model model) {
     model.addAttribute("customerForm", customerForm);
@@ -151,14 +123,7 @@ public class CustomerController {
     return "redirect:/customer";
   }
 
-  @RequestMapping(value = "/customer/delete", method = RequestMethod.GET)
-  public String deleteForm(CustomerBean customerBean, RedirectAttributes attributes, Model model) {
-    customerService.deleteByNumber(customerBean.getCust_no());
 
-    attributes.addFlashAttribute("deleteMessage", "顧客番号:" + customerBean.getCust_no() + "を削除しました");
-
-    return "redirect:/customer";
-  }
 
   /*
    * 検索機能です。CustomerFormの中のkeyとkeywordを使ってDBに検索をかけます。 数字で検索する場合にはselectBykeybumberを使います
@@ -206,33 +171,11 @@ public class CustomerController {
     return "customer/edit";
   }
 
-  /*
-   * 更新保存機能です。渡されたデータでupdateを行います
-   */
-  @RequestMapping(value = "/customer/save-edit", method = RequestMethod.POST)
-<<<<<<< HEAD
-  public String updateSave(CustomerForm customerForm) {
-
-<<<<<<< HEAD
-  @Autowired
-  CustomerService customerService;
 
   /*
-   * 「/customer」を拾ってlistにデータを格納してcustomerフォルダのindex.htmlに飛ばす 2020/11/10 格納の際にエラー発生中
-   *
+   * 編集機能です。入力エラーの場合更新しません
    */
-  @RequestMapping(value = "/customer")
-  public String init(Model model) {
-
-    List<CustomerBean> list = customerService.selectIndex();
-    model.addAttribute("list", list);
-
-    return "customer/index";
-  }
-
-=======
-    customerService.updatebyNumber(customerForm);
-=======
+  @RequestMapping(value = "/customer/save-edit")
   public String updateSave(@ModelAttribute @Validated CustomerForm customerForm,
       BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
@@ -241,8 +184,8 @@ public class CustomerController {
       customerService.updateByNumber(customerForm);
       return ("customer/save");
     }
->>>>>>> sort
+
 
   }
->>>>>>> edit
+
 }
