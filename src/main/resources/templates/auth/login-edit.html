@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<title >パスワード変更</title>
+</head>
+<body>
+<a th:href="@{/customer}"><img th:src="@{/images/comsize.png}" width= 120px></a>
+ <div class="header">
+	<div class="container ">
+		<div class="row">
+			<div class="col-xs-12 title">
+				<p th:text="#{login.login.title}" class="title"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+	<div class="col-xm-12 center">
+	<div th:if="${emptyMessage}">
+		<p style="color: red" th:text="#{login.empty}"></p>
+	</div>
+	<div th:if="${errorMessage}">
+		<p style="color: red" th:text="#{login.error}"></p>
+	</div>
+	<div th:if="${editUsername}">
+		<div>
+		  <p style="color: red"th:text="#{login.edit.username}"/>
+  		</div>
+		<form class="form-inline" th:action="@{/login-editPs}" method="post" th:object="${loginUser}">
+			<div class="form-group">
+				<div>
+				<input class="form-control" id="user_id" type="text" name="user_id" th:fields="*{user_id}" required/>
+				</div>
+				<div>
+				<input class="btn btn-primary" type="submit" th:value="送信" />
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div th:if="${editPassword}">
+		<div>
+ 		 	<p style="color: red"th:text="#{login.edit.password}"/>
+  		</div>
+		<form class="form" th:action="@{/login-edit-save}" method="post" th:object="${loginUser}">
+			<div class="form-group">
+				<div>
+				<label style="background: pink" class="control-label" th:text="#{login.username}"></label>
+				</div>
+				<div>
+				<input class="form-control" id="user_id" type="text" name="user_id" th:field="*{user_id}" readonly/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
+				<label class="control-label" th:text="#{login.password}"></label>
+				</div>
+				<div>
+				<input class="form-control" id="password" type="password" name="password" th:fields="*{password}" required/>
+				</div>
+				<div>
+				<input class="btn btn-primary" type="submit" th:value="送信" />
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div th:if="${createUser}">
+		<div>
+ 		 	<p style="color: red"th:text="#{login.edit.create}"/>
+  		</div>
+		<form class="form" th:action="@{/login-create-save}" method="post" th:object="${loginUser}">
+			<div class="form-group">
+				<div>
+				<label  class="control-label" th:text="#{login.username}"></label>
+				</div>
+				<div>
+				<input class="form-control" id="user_id" type="text" name="user_id" th:field="*{user_id}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div>
+				<label class="comntrol-label" th:text="#{login.password}"></label>
+				</div>
+				<div>
+				<input class="form-control" id="password" type="password" name="password" th:fields="*{password}" required/>
+				</div>
+			</div>
+				<div>
+				<input class="btn btn-primary" type="submit" th:value="送信" />
+				</div>
+		</form>
+	</div>
+	
+	</div>
+	</div>
+</div>
+</body>
+
+</html>

@@ -29,6 +29,8 @@
   <div th:if="${param.error}">
   	<p style="color: red"th:text="#{login.failure}"/>
   </div>
+  
+  
  </div>
 </div>
 </div>
@@ -58,6 +60,11 @@
             <input  class="btn btn-primary" type="submit" th:value="#{login.submit}"></input>
           </div>
         </form>
+        <br>
+        <div>
+        <a th:href="@{/login-edit}" class="btn btn-danger">パスワード変更</a>
+        <a th:href="@{/login-create}" class="btn btn-primary">新規登録</a>
+        </div>
       </div>
     </div>
   </div>

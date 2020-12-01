@@ -18,4 +18,12 @@ public class LoginUserDao {
     return mapper.findUser(userName);
   }
 
+  public void updateUser(LoginUser loginUser) {
+    mapper.updateUser(loginUser);
+  }
+
+  public void insertUser(LoginUser loginUser) {
+    mapper.insertUser(loginUser);
+  }
+
 }

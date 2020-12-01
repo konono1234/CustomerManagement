@@ -43,10 +43,15 @@ public class UserService implements UserDetailsService {
     UserDetails userDetails =
         (UserDetails) new User(user.getUser_id(), encoder.encode(user.getPassword()), grantList);
     return userDetails;
-
-
   }
 
+  public void updateUserByUserid(LoginUser loginUser) {
+    loginUserDao.updateUser(loginUser);
+  }
+
+  public void insertUserInfo(LoginUser loginUser) {
+    loginUserDao.insertUser(loginUser);
+  }
 
 
 }
