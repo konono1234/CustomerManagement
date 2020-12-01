@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private UserService userService;
 
+  // パスワードのハッシュ化
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
     BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
@@ -31,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return bcpe;
   }
 
+  // ここはスルーするURL設定
   public void configure(WebSecurity web) throws Exception {
     web.ignoring().antMatchers("/webjars/**");
     web.ignoring().antMatchers("/css/**");
@@ -54,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .invalidateHttpSession(true).permitAll();// ログアウト時のセッション破棄を有効化
   }
 
+  // idとpasswordをサービスを介して習得し設定する
   @Autowired
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -62,6 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
   }
-  // idとpasswordをサービスを介して習得し設定する
+
 
 }
